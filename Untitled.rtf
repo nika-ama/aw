@@ -1,0 +1,476 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2709
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fnil\fcharset0 Menlo-Regular;}
+{\colortbl;\red255\green255\blue255;\red193\green193\blue193;\red89\green138\blue67;\red24\green24\blue24;
+\red183\green111\blue179;\red67\green192\blue160;\red140\green211\blue254;\red212\green214\blue154;\red70\green137\blue204;
+\red202\green202\blue202;\red167\green197\blue152;\red194\green126\blue101;\red66\green179\blue255;\red205\green173\blue106;
+}
+{\*\expandedcolortbl;;\cssrgb\c80000\c80000\c80000;\cssrgb\c41569\c60000\c33333;\cssrgb\c12157\c12157\c12157;
+\cssrgb\c77255\c52549\c75294;\cssrgb\c30588\c78824\c69020;\cssrgb\c61176\c86275\c99608;\cssrgb\c86275\c86275\c66667;\cssrgb\c33725\c61176\c83922;
+\cssrgb\c83137\c83137\c83137;\cssrgb\c70980\c80784\c65882;\cssrgb\c80784\c56863\c47059;\cssrgb\c30980\c75686\c100000;\cssrgb\c84314\c72941\c49020;
+}
+\margl1440\margr1440\vieww11520\viewh8400\viewkind0
+\deftab720
+\pard\pardeftab720\partightenfactor0
+
+\f0\fs32 \cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 \
+\pard\pardeftab720\partightenfactor0
+\cf3 \cb4 \strokec3 #all types of string in all types of files\cf2 \cb1 \strokec2 \
+\pard\pardeftab720\partightenfactor0
+\cf5 \cb4 \strokec5 from\cf2 \strokec2  \cf6 \strokec6 __future__\cf2 \strokec2  \cf5 \strokec5 import\cf2 \strokec2  \cf7 \strokec7 absolute_import\cf2 \cb1 \strokec2 \
+\pard\pardeftab720\partightenfactor0
+\cf3 \cb4 \strokec3 #using print as a function\cf2 \cb1 \strokec2 \
+\pard\pardeftab720\partightenfactor0
+\cf5 \cb4 \strokec5 from\cf2 \strokec2  \cf6 \strokec6 __future__\cf2 \strokec2  \cf5 \strokec5 import\cf2 \strokec2  \cf7 \strokec7 print_function\cf2 \cb1 \strokec2 \
+\pard\pardeftab720\partightenfactor0
+\cf3 \cb4 \strokec3 #for reading our simulation in sumo\cf2 \cb1 \strokec2 \
+\pard\pardeftab720\partightenfactor0
+\cf5 \cb4 \strokec5 from\cf2 \strokec2  \cf6 \strokec6 sumolib\cf2 \strokec2  \cf5 \strokec5 import\cf2 \strokec2  \cf8 \strokec8 checkBinary\cf2 \cb1 \strokec2 \
+\pard\pardeftab720\partightenfactor0
+\cf3 \cb4 \strokec3 #for making DNN , its calculates and for deep and machine learning\cf2 \cb1 \strokec2 \
+\pard\pardeftab720\partightenfactor0
+\cf5 \cb4 \strokec5 import\cf2 \strokec2  \cf6 \strokec6 tensorflow\cf2 \strokec2  \cf5 \strokec5 as\cf2 \strokec2  \cf6 \strokec6 tf\cf2 \cb1 \strokec2 \
+\
+\cf5 \cb4 \strokec5 import\cf2 \strokec2  \cf6 \strokec6 os\cf2 \cb1 \strokec2 \
+\cf5 \cb4 \strokec5 import\cf2 \strokec2  \cf6 \strokec6 sys\cf2 \cb1 \strokec2 \
+\cf5 \cb4 \strokec5 import\cf2 \strokec2  \cf6 \strokec6 optparse\cf2 \cb1 \strokec2 \
+\cf5 \cb4 \strokec5 import\cf2 \strokec2  \cf6 \strokec6 subprocess\cf2 \cb1 \strokec2 \
+\cf5 \cb4 \strokec5 import\cf2 \strokec2  \cf6 \strokec6 random\cf2 \cb1 \strokec2 \
+\cf5 \cb4 \strokec5 import\cf2 \strokec2  \cf6 \strokec6 traci\cf2 \cb1 \strokec2 \
+\cf5 \cb4 \strokec5 import\cf2 \strokec2  \cf6 \strokec6 random\cf2 \cb1 \strokec2 \
+\cf5 \cb4 \strokec5 import\cf2 \strokec2  \cf6 \strokec6 numpy\cf2 \strokec2  \cf5 \strokec5 as\cf2 \strokec2  \cf6 \strokec6 np\cf2 \cb1 \strokec2 \
+\cf5 \cb4 \strokec5 import\cf2 \strokec2  \cf6 \strokec6 keras\cf2 \cb1 \strokec2 \
+\cf5 \cb4 \strokec5 import\cf2 \strokec2  \cf6 \strokec6 h5py\cf2 \cb1 \strokec2 \
+\cf5 \cb4 \strokec5 from\cf2 \strokec2  \cf6 \strokec6 collections\cf2 \strokec2  \cf5 \strokec5 import\cf2 \strokec2  \cf6 \strokec6 deque\cf2 \cb1 \strokec2 \
+\cf5 \cb4 \strokec5 from\cf2 \strokec2  \cf6 \strokec6 keras\cf2 \strokec2 .\cf6 \strokec6 layers\cf2 \strokec2  \cf5 \strokec5 import\cf2 \strokec2  \cf8 \strokec8 Input\cf2 \strokec2 , \cf6 \strokec6 Conv2D\cf2 \strokec2 , \cf6 \strokec6 Flatten\cf2 \strokec2 , \cf6 \strokec6 Dense\cf2 \cb1 \strokec2 \
+\cf5 \cb4 \strokec5 from\cf2 \strokec2  \cf6 \strokec6 keras\cf2 \strokec2 .\cf6 \strokec6 models\cf2 \strokec2  \cf5 \strokec5 import\cf2 \strokec2  \cf6 \strokec6 Model\cf2 \cb1 \strokec2 \
+\
+\
+\
+\
+\pard\pardeftab720\partightenfactor0
+\cf9 \cb4 \strokec9 class\cf2 \strokec2  \cf6 \strokec6 DQNAgent\cf2 \strokec2 :\cb1 \
+\pard\pardeftab720\partightenfactor0
+\cf2 \cb4     \cf9 \strokec9 def\cf2 \strokec2  \cf8 \strokec8 __init__\cf2 \strokec2 (\cf7 \strokec7 self\cf2 \strokec2 ):\cb1 \
+\cb4         \cf7 \strokec7 self\cf2 \strokec2 .\cf7 \strokec7 gamma\cf2 \strokec2  \cf10 \strokec10 =\cf2 \strokec2  \cf11 \strokec11 0.95\cf2 \strokec2    \cf3 \strokec3 # discount rate\cf2 \cb1 \strokec2 \
+\cb4         \cf7 \strokec7 self\cf2 \strokec2 .\cf7 \strokec7 epsilon\cf2 \strokec2  \cf10 \strokec10 =\cf2 \strokec2  \cf11 \strokec11 0.1\cf2 \strokec2   \cf3 \strokec3 # exploration rate\cf2 \cb1 \strokec2 \
+\cb4         \cf7 \strokec7 self\cf2 \strokec2 .\cf7 \strokec7 learning_rate\cf2 \strokec2  \cf10 \strokec10 =\cf2 \strokec2  \cf11 \strokec11 0.0002\cf2 \cb1 \strokec2 \
+\cb4         \cf7 \strokec7 self\cf2 \strokec2 .\cf7 \strokec7 memory\cf2 \strokec2  \cf10 \strokec10 =\cf2 \strokec2  \cf6 \strokec6 deque\cf2 \strokec2 (\cf7 \strokec7 maxlen\cf10 \strokec10 =\cf11 \strokec11 200\cf2 \strokec2 )\cb1 \
+\cb4         \cf7 \strokec7 self\cf2 \strokec2 .\cf7 \strokec7 model\cf2 \strokec2  \cf10 \strokec10 =\cf2 \strokec2  \cf7 \strokec7 self\cf2 \strokec2 .\cf8 \strokec8 _build_model\cf2 \strokec2 ()\cb1 \
+\cb4         \cf7 \strokec7 self\cf2 \strokec2 .\cf7 \strokec7 action_size\cf2 \strokec2  \cf10 \strokec10 =\cf2 \strokec2  \cf11 \strokec11 2\cf2 \cb1 \strokec2 \
+\
+\
+\
+\cb4     \cf9 \strokec9 def\cf2 \strokec2  \cf8 \strokec8 _build_model\cf2 \strokec2 (\cf7 \strokec7 self\cf2 \strokec2 ):\cb1 \
+\cb4         \cf3 \strokec3 # Neural Net for Deep-Q learning Model\cf2 \cb1 \strokec2 \
+\cb4         \cf7 \strokec7 input_1\cf2 \strokec2  \cf10 \strokec10 =\cf2 \strokec2  \cf8 \strokec8 Input\cf2 \strokec2 (\cf7 \strokec7 shape\cf10 \strokec10 =\cf2 \strokec2 (\cf11 \strokec11 12\cf2 \strokec2 , \cf11 \strokec11 12\cf2 \strokec2 , \cf11 \strokec11 1\cf2 \strokec2 ))\cb1 \
+\cb4         \cf7 \strokec7 x1\cf2 \strokec2  \cf10 \strokec10 =\cf2 \strokec2  \cf6 \strokec6 Conv2D\cf2 \strokec2 (\cf11 \strokec11 16\cf2 \strokec2 , (\cf11 \strokec11 4\cf2 \strokec2 , \cf11 \strokec11 4\cf2 \strokec2 ), \cf7 \strokec7 strides\cf10 \strokec10 =\cf2 \strokec2 (\cf11 \strokec11 2\cf2 \strokec2 , \cf11 \strokec11 2\cf2 \strokec2 ), \cf7 \strokec7 activation\cf10 \strokec10 =\cf12 \strokec12 'relu'\cf2 \strokec2 )(\cf7 \strokec7 input_1\cf2 \strokec2 )\cb1 \
+\cb4         \cf7 \strokec7 x1\cf2 \strokec2  \cf10 \strokec10 =\cf2 \strokec2  \cf6 \strokec6 Conv2D\cf2 \strokec2 (\cf11 \strokec11 32\cf2 \strokec2 , (\cf11 \strokec11 2\cf2 \strokec2 , \cf11 \strokec11 2\cf2 \strokec2 ), \cf7 \strokec7 strides\cf10 \strokec10 =\cf2 \strokec2 (\cf11 \strokec11 1\cf2 \strokec2 , \cf11 \strokec11 1\cf2 \strokec2 ), \cf7 \strokec7 activation\cf10 \strokec10 =\cf12 \strokec12 'relu'\cf2 \strokec2 )(\cf7 \strokec7 x1\cf2 \strokec2 )\cb1 \
+\cb4         \cf7 \strokec7 x1\cf2 \strokec2  \cf10 \strokec10 =\cf2 \strokec2  \cf6 \strokec6 Flatten\cf2 \strokec2 ()(\cf7 \strokec7 x1\cf2 \strokec2 )\cb1 \
+\
+\cb4         \cf7 \strokec7 input_2\cf2 \strokec2  \cf10 \strokec10 =\cf2 \strokec2  \cf8 \strokec8 Input\cf2 \strokec2 (\cf7 \strokec7 shape\cf10 \strokec10 =\cf2 \strokec2 (\cf11 \strokec11 12\cf2 \strokec2 , \cf11 \strokec11 12\cf2 \strokec2 , \cf11 \strokec11 1\cf2 \strokec2 ))\cb1 \
+\cb4         \cf7 \strokec7 x2\cf2 \strokec2  \cf10 \strokec10 =\cf2 \strokec2  \cf6 \strokec6 Conv2D\cf2 \strokec2 (\cf11 \strokec11 16\cf2 \strokec2 , (\cf11 \strokec11 4\cf2 \strokec2 , \cf11 \strokec11 4\cf2 \strokec2 ), \cf7 \strokec7 strides\cf10 \strokec10 =\cf2 \strokec2 (\cf11 \strokec11 2\cf2 \strokec2 , \cf11 \strokec11 2\cf2 \strokec2 ), \cf7 \strokec7 activation\cf10 \strokec10 =\cf12 \strokec12 'relu'\cf2 \strokec2 )(\cf7 \strokec7 input_2\cf2 \strokec2 )\cb1 \
+\cb4         \cf7 \strokec7 x2\cf2 \strokec2  \cf10 \strokec10 =\cf2 \strokec2  \cf6 \strokec6 Conv2D\cf2 \strokec2 (\cf11 \strokec11 32\cf2 \strokec2 , (\cf11 \strokec11 2\cf2 \strokec2 , \cf11 \strokec11 2\cf2 \strokec2 ), \cf7 \strokec7 strides\cf10 \strokec10 =\cf2 \strokec2 (\cf11 \strokec11 1\cf2 \strokec2 , \cf11 \strokec11 1\cf2 \strokec2 ), \cf7 \strokec7 activation\cf10 \strokec10 =\cf12 \strokec12 'relu'\cf2 \strokec2 )(\cf7 \strokec7 x2\cf2 \strokec2 )\cb1 \
+\cb4         \cf7 \strokec7 x2\cf2 \strokec2  \cf10 \strokec10 =\cf2 \strokec2  \cf6 \strokec6 Flatten\cf2 \strokec2 ()(\cf7 \strokec7 x2\cf2 \strokec2 )\cb1 \
+\
+\cb4         \cf7 \strokec7 input_3\cf2 \strokec2  \cf10 \strokec10 =\cf2 \strokec2  \cf8 \strokec8 Input\cf2 \strokec2 (\cf7 \strokec7 shape\cf10 \strokec10 =\cf2 \strokec2 (\cf11 \strokec11 2\cf2 \strokec2 , \cf11 \strokec11 1\cf2 \strokec2 ))\cb1 \
+\cb4         \cf7 \strokec7 x3\cf2 \strokec2  \cf10 \strokec10 =\cf2 \strokec2  \cf6 \strokec6 Flatten\cf2 \strokec2 ()(\cf7 \strokec7 input_3\cf2 \strokec2 )\cb1 \
+\
+\cb4         \cf7 \strokec7 x\cf2 \strokec2  \cf10 \strokec10 =\cf2 \strokec2  \cf6 \strokec6 keras\cf2 \strokec2 .layers.concatenate([\cf7 \strokec7 x1\cf2 \strokec2 , \cf7 \strokec7 x2\cf2 \strokec2 , \cf7 \strokec7 x3\cf2 \strokec2 ])\cb1 \
+\cb4         \cf7 \strokec7 x\cf2 \strokec2  \cf10 \strokec10 =\cf2 \strokec2  \cf6 \strokec6 Dense\cf2 \strokec2 (\cf11 \strokec11 128\cf2 \strokec2 , \cf7 \strokec7 activation\cf10 \strokec10 =\cf12 \strokec12 'relu'\cf2 \strokec2 )(\cf7 \strokec7 x\cf2 \strokec2 )\cb1 \
+\cb4         \cf7 \strokec7 x\cf2 \strokec2  \cf10 \strokec10 =\cf2 \strokec2  \cf6 \strokec6 Dense\cf2 \strokec2 (\cf11 \strokec11 64\cf2 \strokec2 , \cf7 \strokec7 activation\cf10 \strokec10 =\cf12 \strokec12 'relu'\cf2 \strokec2 )(\cf7 \strokec7 x\cf2 \strokec2 )\cb1 \
+\cb4         \cf7 \strokec7 x\cf2 \strokec2  \cf10 \strokec10 =\cf2 \strokec2  \cf6 \strokec6 Dense\cf2 \strokec2 (\cf11 \strokec11 2\cf2 \strokec2 , \cf7 \strokec7 activation\cf10 \strokec10 =\cf12 \strokec12 'linear'\cf2 \strokec2 )(\cf7 \strokec7 x\cf2 \strokec2 )\cb1 \
+\
+\cb4         \cf7 \strokec7 model\cf2 \strokec2  \cf10 \strokec10 =\cf2 \strokec2  \cf6 \strokec6 Model\cf2 \strokec2 (\cf7 \strokec7 inputs\cf10 \strokec10 =\cf2 \strokec2 [\cf7 \strokec7 input_1\cf2 \strokec2 , \cf7 \strokec7 input_2\cf2 \strokec2 , \cf7 \strokec7 input_3\cf2 \strokec2 ], \cf7 \strokec7 outputs\cf10 \strokec10 =\cf2 \strokec2 [\cf7 \strokec7 x\cf2 \strokec2 ])\cb1 \
+\cb4         \cf7 \strokec7 model\cf2 \strokec2 .\cf8 \strokec8 compile\cf2 \strokec2 (\cf7 \strokec7 optimizer\cf10 \strokec10 =\cf6 \strokec6 keras\cf2 \strokec2 .optimizers.RMSprop(\cb1 \
+\cb4             \cf7 \strokec7 lr\cf10 \strokec10 =\cf7 \strokec7 self\cf2 \strokec2 .\cf7 \strokec7 learning_rate\cf2 \strokec2 ), \cf7 \strokec7 loss\cf10 \strokec10 =\cf12 \strokec12 'mse'\cf2 \strokec2 )\cb1 \
+\
+\cb4         \cf5 \strokec5 return\cf2 \strokec2  \cf7 \strokec7 model\cf2 \cb1 \strokec2 \
+\
+\
+\
+\
+\
+\cb4     \cf9 \strokec9 def\cf2 \strokec2  \cf8 \strokec8 remember\cf2 \strokec2 (\cf7 \strokec7 self\cf2 \strokec2 , \cf7 \strokec7 state\cf2 \strokec2 , \cf7 \strokec7 action\cf2 \strokec2 , \cf7 \strokec7 reward\cf2 \strokec2 , \cf7 \strokec7 next_state\cf2 \strokec2 , \cf7 \strokec7 done\cf2 \strokec2 ):\cb1 \
+\cb4         \cf7 \strokec7 self\cf2 \strokec2 .\cf7 \strokec7 memory\cf2 \strokec2 .\cf8 \strokec8 append\cf2 \strokec2 ((\cf7 \strokec7 state\cf2 \strokec2 , \cf7 \strokec7 action\cf2 \strokec2 , \cf7 \strokec7 reward\cf2 \strokec2 , \cf7 \strokec7 next_state\cf2 \strokec2 , \cf7 \strokec7 done\cf2 \strokec2 ))\cb1 \
+\
+\cb4     \cf9 \strokec9 def\cf2 \strokec2  \cf8 \strokec8 act\cf2 \strokec2 (\cf7 \strokec7 self\cf2 \strokec2 , \cf7 \strokec7 state\cf2 \strokec2 ):\cb1 \
+\cb4         \cf5 \strokec5 if\cf2 \strokec2  \cf6 \strokec6 np\cf2 \strokec2 .\cf6 \strokec6 random\cf2 \strokec2 .\cf7 \strokec7 rand\cf2 \strokec2 () \cf10 \strokec10 <=\cf2 \strokec2  \cf7 \strokec7 self\cf2 \strokec2 .\cf7 \strokec7 epsilon\cf2 \strokec2 :\cb1 \
+\cb4             \cf5 \strokec5 return\cf2 \strokec2  \cf6 \strokec6 random\cf2 \strokec2 .\cf7 \strokec7 randrange\cf2 \strokec2 (\cf7 \strokec7 self\cf2 \strokec2 .\cf7 \strokec7 action_size\cf2 \strokec2 )\cb1 \
+\cb4         \cf7 \strokec7 act_values\cf2 \strokec2  \cf10 \strokec10 =\cf2 \strokec2  \cf7 \strokec7 self\cf2 \strokec2 .\cf7 \strokec7 model\cf2 \strokec2 .\cf8 \strokec8 predict\cf2 \strokec2 (\cf7 \strokec7 state\cf2 \strokec2 )\cb1 \
+\
+\cb4         \cf5 \strokec5 return\cf2 \strokec2  \cf6 \strokec6 np\cf2 \strokec2 .\cf8 \strokec8 argmax\cf2 \strokec2 (\cf7 \strokec7 act_values\cf2 \strokec2 [\cf11 \strokec11 0\cf2 \strokec2 ])  \cf3 \strokec3 # returns action\cf2 \cb1 \strokec2 \
+\
+\cb4     \cf9 \strokec9 def\cf2 \strokec2  \cf8 \strokec8 replay\cf2 \strokec2 (\cf7 \strokec7 self\cf2 \strokec2 , \cf7 \strokec7 batch_size\cf2 \strokec2 ):\cb1 \
+\cb4         \cf7 \strokec7 minibatch\cf2 \strokec2  \cf10 \strokec10 =\cf2 \strokec2  \cf6 \strokec6 random\cf2 \strokec2 .\cf7 \strokec7 sample\cf2 \strokec2 (\cf7 \strokec7 self\cf2 \strokec2 .\cf7 \strokec7 memory\cf2 \strokec2 , \cf7 \strokec7 batch_size\cf2 \strokec2 )\cb1 \
+\cb4         \cf5 \strokec5 for\cf2 \strokec2  \cf7 \strokec7 state\cf2 \strokec2 , \cf7 \strokec7 action\cf2 \strokec2 , \cf7 \strokec7 reward\cf2 \strokec2 , \cf7 \strokec7 next_state\cf2 \strokec2 , \cf7 \strokec7 done\cf2 \strokec2  \cf5 \strokec5 in\cf2 \strokec2  \cf7 \strokec7 minibatch\cf2 \strokec2 :\cb1 \
+\cb4             \cf7 \strokec7 target\cf2 \strokec2  \cf10 \strokec10 =\cf2 \strokec2  \cf7 \strokec7 reward\cf2 \cb1 \strokec2 \
+\cb4             \cf5 \strokec5 if\cf2 \strokec2  \cf9 \strokec9 not\cf2 \strokec2  \cf7 \strokec7 done\cf2 \strokec2 :\cb1 \
+\cb4                 \cf7 \strokec7 target\cf2 \strokec2  \cf10 \strokec10 =\cf2 \strokec2  (\cf7 \strokec7 reward\cf2 \strokec2  \cf10 \strokec10 +\cf2 \strokec2  \cf7 \strokec7 self\cf2 \strokec2 .\cf7 \strokec7 gamma\cf2 \strokec2  \cf10 \strokec10 *\cf2 \cb1 \strokec2 \
+\cb4                           \cf6 \strokec6 np\cf2 \strokec2 .\cf8 \strokec8 amax\cf2 \strokec2 (\cf7 \strokec7 self\cf2 \strokec2 .\cf7 \strokec7 model\cf2 \strokec2 .\cf8 \strokec8 predict\cf2 \strokec2 (\cf7 \strokec7 next_state\cf2 \strokec2 )[\cf11 \strokec11 0\cf2 \strokec2 ]))\cb1 \
+\cb4             \cf7 \strokec7 target_f\cf2 \strokec2  \cf10 \strokec10 =\cf2 \strokec2  \cf7 \strokec7 self\cf2 \strokec2 .\cf7 \strokec7 model\cf2 \strokec2 .\cf8 \strokec8 predict\cf2 \strokec2 (\cf7 \strokec7 state\cf2 \strokec2 )\cb1 \
+\cb4             \cf7 \strokec7 target_f\cf2 \strokec2 [\cf11 \strokec11 0\cf2 \strokec2 ][\cf7 \strokec7 action\cf2 \strokec2 ] \cf10 \strokec10 =\cf2 \strokec2  \cf7 \strokec7 target\cf2 \cb1 \strokec2 \
+\cb4             \cf7 \strokec7 self\cf2 \strokec2 .\cf7 \strokec7 model\cf2 \strokec2 .\cf8 \strokec8 fit\cf2 \strokec2 (\cf7 \strokec7 state\cf2 \strokec2 , \cf7 \strokec7 target_f\cf2 \strokec2 , \cf7 \strokec7 epochs\cf10 \strokec10 =\cf11 \strokec11 1\cf2 \strokec2 , \cf7 \strokec7 verbose\cf10 \strokec10 =\cf11 \strokec11 0\cf2 \strokec2 )\cb1 \
+\
+\cb4     \cf9 \strokec9 def\cf2 \strokec2  \cf8 \strokec8 load\cf2 \strokec2 (\cf7 \strokec7 self\cf2 \strokec2 , \cf7 \strokec7 name\cf2 \strokec2 ):\cb1 \
+\cb4         \cf7 \strokec7 self\cf2 \strokec2 .\cf7 \strokec7 model\cf2 \strokec2 .\cf8 \strokec8 load_weights\cf2 \strokec2 (\cf7 \strokec7 name\cf2 \strokec2 )\cb1 \
+\
+\cb4     \cf9 \strokec9 def\cf2 \strokec2  \cf8 \strokec8 save\cf2 \strokec2 (\cf7 \strokec7 self\cf2 \strokec2 , \cf7 \strokec7 name\cf2 \strokec2 ):\cb1 \
+\cb4         \cf7 \strokec7 self\cf2 \strokec2 .\cf7 \strokec7 model\cf2 \strokec2 .\cf8 \strokec8 save_weights\cf2 \strokec2 (\cf7 \strokec7 name\cf2 \strokec2 )\cb1 \
+\
+\
+\
+\
+\pard\pardeftab720\partightenfactor0
+\cf9 \cb4 \strokec9 class\cf2 \strokec2  \cf6 \strokec6 SumoIntersection\cf2 \strokec2 :\cb1 \
+\pard\pardeftab720\partightenfactor0
+\cf2 \cb4     \cf9 \strokec9 def\cf2 \strokec2  \cf8 \strokec8 __init__\cf2 \strokec2 (\cf7 \strokec7 self\cf2 \strokec2 ):\cb1 \
+\cb4         \cf3 \strokec3 # we need to import python modules from the $SUMO_HOME/tools directory\cf2 \cb1 \strokec2 \
+\cb4         \cf5 \strokec5 try\cf2 \strokec2 :\cb1 \
+\cb4             \cf6 \strokec6 sys\cf2 \strokec2 .\cf7 \strokec7 path\cf2 \strokec2 .\cf8 \strokec8 append\cf2 \strokec2 (\cf6 \strokec6 os\cf2 \strokec2 .\cf7 \strokec7 path\cf2 \strokec2 .\cf8 \strokec8 join\cf2 \strokec2 (\cf6 \strokec6 os\cf2 \strokec2 .\cf7 \strokec7 path\cf2 \strokec2 .\cf8 \strokec8 dirname\cf2 \strokec2 (\cb1 \
+\cb4                 \cf7 \strokec7 __file__\cf2 \strokec2 ), \cf12 \strokec12 '..'\cf2 \strokec2 , \cf12 \strokec12 '..'\cf2 \strokec2 , \cf12 \strokec12 '..'\cf2 \strokec2 , \cf12 \strokec12 '..'\cf2 \strokec2 , \cf12 \strokec12 "tools"\cf2 \strokec2 ))  \cf3 \strokec3 # tutorial in tests\cf2 \cb1 \strokec2 \
+\cb4             \cf6 \strokec6 sys\cf2 \strokec2 .\cf7 \strokec7 path\cf2 \strokec2 .\cf8 \strokec8 append\cf2 \strokec2 (\cf6 \strokec6 os\cf2 \strokec2 .\cf7 \strokec7 path\cf2 \strokec2 .\cf8 \strokec8 join\cf2 \strokec2 (\cf6 \strokec6 os\cf2 \strokec2 .\cf7 \strokec7 environ\cf2 \strokec2 .\cf8 \strokec8 get\cf2 \strokec2 (\cf12 \strokec12 "SUMO_HOME"\cf2 \strokec2 , \cf6 \strokec6 os\cf2 \strokec2 .\cf7 \strokec7 path\cf2 \strokec2 .\cf8 \strokec8 join\cf2 \strokec2 (\cb1 \
+\cb4                 \cf6 \strokec6 os\cf2 \strokec2 .\cf7 \strokec7 path\cf2 \strokec2 .\cf8 \strokec8 dirname\cf2 \strokec2 (\cf7 \strokec7 __file__\cf2 \strokec2 ), \cf12 \strokec12 ".."\cf2 \strokec2 , \cf12 \strokec12 ".."\cf2 \strokec2 , \cf12 \strokec12 ".."\cf2 \strokec2 )), \cf12 \strokec12 "tools"\cf2 \strokec2 ))  \cf3 \strokec3 # tutorial in docs\cf2 \cb1 \strokec2 \
+\cb4             \cf5 \strokec5 from\cf2 \strokec2  \cf6 \strokec6 sumolib\cf2 \strokec2  \cf5 \strokec5 import\cf2 \strokec2  \cf8 \strokec8 checkBinary\cf2 \strokec2   \cf3 \strokec3 # noqa\cf2 \cb1 \strokec2 \
+\cb4         \cf5 \strokec5 except\cf2 \strokec2  \cf6 \strokec6 ImportError\cf2 \strokec2 :\cb1 \
+\cb4             \cf6 \strokec6 sys\cf2 \strokec2 .\cf8 \strokec8 exit\cf2 \strokec2 (\cb1 \
+\cb4                 \cf12 \strokec12 "please declare environment variable 'SUMO_HOME' as the root directory of your sumo installation (it should contain folders 'bin', 'tools' and 'docs')"\cf2 \strokec2 )\cb1 \
+\
+\
+\
+\
+\cb4     \cf9 \strokec9 def\cf2 \strokec2  \cf8 \strokec8 generate_routefile\cf2 \strokec2 (\cf7 \strokec7 self\cf2 \strokec2 ):\cb1 \
+\cb4         \cf6 \strokec6 random\cf2 \strokec2 .\cf7 \strokec7 seed\cf2 \strokec2 (\cf11 \strokec11 42\cf2 \strokec2 )  \cf3 \strokec3 # make tests reproducible\cf2 \cb1 \strokec2 \
+\cb4         \cf13 \strokec13 N\cf2 \strokec2  \cf10 \strokec10 =\cf2 \strokec2  \cf11 \strokec11 5000\cf2 \strokec2   \cf3 \strokec3 # number of time steps\cf2 \cb1 \strokec2 \
+\cb4         \cf3 \strokec3 # demand per second from different directions\cf2 \cb1 \strokec2 \
+\cb4         \cf7 \strokec7 pH\cf2 \strokec2  \cf10 \strokec10 =\cf2 \strokec2  \cf11 \strokec11 1\cf2 \strokec2 . \cf10 \strokec10 /\cf2 \strokec2  \cf11 \strokec11 7\cf2 \cb1 \strokec2 \
+\cb4         \cf7 \strokec7 pV\cf2 \strokec2  \cf10 \strokec10 =\cf2 \strokec2  \cf11 \strokec11 1\cf2 \strokec2 . \cf10 \strokec10 /\cf2 \strokec2  \cf11 \strokec11 11\cf2 \cb1 \strokec2 \
+\cb4         \cf7 \strokec7 pAR\cf2 \strokec2  \cf10 \strokec10 =\cf2 \strokec2  \cf11 \strokec11 1\cf2 \strokec2 . \cf10 \strokec10 /\cf2 \strokec2  \cf11 \strokec11 30\cf2 \cb1 \strokec2 \
+\cb4         \cf7 \strokec7 pAL\cf2 \strokec2  \cf10 \strokec10 =\cf2 \strokec2  \cf11 \strokec11 1\cf2 \strokec2 . \cf10 \strokec10 /\cf2 \strokec2  \cf11 \strokec11 25\cf2 \cb1 \strokec2 \
+\cb4         \cf5 \strokec5 with\cf2 \strokec2  \cf8 \strokec8 open\cf2 \strokec2 (\cf12 \strokec12 "input_routes.rou.xml"\cf2 \strokec2 , \cf12 \strokec12 "w"\cf2 \strokec2 ) \cf5 \strokec5 as\cf2 \strokec2  \cf7 \strokec7 routes\cf2 \strokec2 :\cb1 \
+\cb4             \cf8 \strokec8 print\cf2 \strokec2 (\cf12 \strokec12 '''<routes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/routes_file.xsd">\cf2 \cb1 \strokec2 \
+\pard\pardeftab720\partightenfactor0
+\cf12 \cb4 \strokec12     <vType id="SUMO_DEFAULT_TYPE" accel="0.8" decel="4.5" sigma="0" length="5" minGap="2" maxSpeed="70"/>\cf2 \cb1 \strokec2 \
+\cf12 \cb4 \strokec12     <route id="always_right" edges="1fi 1si 4o 4fi 4si 2o 2fi 2si 3o 3fi 3si 1o 1fi"/>\cf2 \cb1 \strokec2 \
+\cf12 \cb4 \strokec12     <route id="always_left" edges="3fi 3si 2o 2fi 2si 4o 4fi 4si 1o 1fi 1si 3o 3fi"/>\cf2 \cb1 \strokec2 \
+\cf12 \cb4 \strokec12     <route id="horizontal" edges="2fi 2si 1o 1fi 1si 2o 2fi"/>\cf2 \cb1 \strokec2 \
+\cf12 \cb4 \strokec12     <route id="vertical" edges="3fi 3si 4o 4fi 4si 3o 3fi"/>\cf2 \cb1 \strokec2 \
+\
+\cf12 \cb4 \strokec12     '''\cf2 \strokec2 , \cf7 \strokec7 file\cf10 \strokec10 =\cf7 \strokec7 routes\cf2 \strokec2 )\cb1 \
+\pard\pardeftab720\partightenfactor0
+\cf2 \cb4             \cf7 \strokec7 lastVeh\cf2 \strokec2  \cf10 \strokec10 =\cf2 \strokec2  \cf11 \strokec11 0\cf2 \cb1 \strokec2 \
+\cb4             \cf7 \strokec7 vehNr\cf2 \strokec2  \cf10 \strokec10 =\cf2 \strokec2  \cf11 \strokec11 0\cf2 \cb1 \strokec2 \
+\cb4             \cf5 \strokec5 for\cf2 \strokec2  \cf7 \strokec7 i\cf2 \strokec2  \cf5 \strokec5 in\cf2 \strokec2  \cf6 \strokec6 range\cf2 \strokec2 (\cf13 \strokec13 N\cf2 \strokec2 ):\cb1 \
+\cb4                 \cf5 \strokec5 if\cf2 \strokec2  \cf6 \strokec6 random\cf2 \strokec2 .\cf7 \strokec7 uniform\cf2 \strokec2 (\cf11 \strokec11 0\cf2 \strokec2 , \cf11 \strokec11 1\cf2 \strokec2 ) \cf10 \strokec10 <\cf2 \strokec2  \cf7 \strokec7 pH\cf2 \strokec2 :\cb1 \
+\cb4                     \cf8 \strokec8 print\cf2 \strokec2 (\cf12 \strokec12 '    <vehicle id="right_\cf9 \strokec9 %i\cf12 \strokec12 " type="SUMO_DEFAULT_TYPE" route="horizontal" depart="\cf9 \strokec9 %i\cf12 \strokec12 " />'\cf2 \strokec2  \cf10 \strokec10 %\cf2 \strokec2  (\cb1 \
+\cb4                         \cf7 \strokec7 vehNr\cf2 \strokec2 , \cf7 \strokec7 i\cf2 \strokec2 ), \cf7 \strokec7 file\cf10 \strokec10 =\cf7 \strokec7 routes\cf2 \strokec2 )\cb1 \
+\cb4                     \cf7 \strokec7 vehNr\cf2 \strokec2  \cf10 \strokec10 +=\cf2 \strokec2  \cf11 \strokec11 1\cf2 \cb1 \strokec2 \
+\cb4                     \cf7 \strokec7 lastVeh\cf2 \strokec2  \cf10 \strokec10 =\cf2 \strokec2  \cf7 \strokec7 i\cf2 \cb1 \strokec2 \
+\cb4                 \cf5 \strokec5 if\cf2 \strokec2  \cf6 \strokec6 random\cf2 \strokec2 .\cf7 \strokec7 uniform\cf2 \strokec2 (\cf11 \strokec11 0\cf2 \strokec2 , \cf11 \strokec11 1\cf2 \strokec2 ) \cf10 \strokec10 <\cf2 \strokec2  \cf7 \strokec7 pV\cf2 \strokec2 :\cb1 \
+\cb4                     \cf8 \strokec8 print\cf2 \strokec2 (\cf12 \strokec12 '    <vehicle id="left_\cf9 \strokec9 %i\cf12 \strokec12 " type="SUMO_DEFAULT_TYPE" route="vertical" depart="\cf9 \strokec9 %i\cf12 \strokec12 " />'\cf2 \strokec2  \cf10 \strokec10 %\cf2 \strokec2  (\cb1 \
+\cb4                         \cf7 \strokec7 vehNr\cf2 \strokec2 , \cf7 \strokec7 i\cf2 \strokec2 ), \cf7 \strokec7 file\cf10 \strokec10 =\cf7 \strokec7 routes\cf2 \strokec2 )\cb1 \
+\cb4                     \cf7 \strokec7 vehNr\cf2 \strokec2  \cf10 \strokec10 +=\cf2 \strokec2  \cf11 \strokec11 1\cf2 \cb1 \strokec2 \
+\cb4                     \cf7 \strokec7 lastVeh\cf2 \strokec2  \cf10 \strokec10 =\cf2 \strokec2  \cf7 \strokec7 i\cf2 \cb1 \strokec2 \
+\cb4                 \cf5 \strokec5 if\cf2 \strokec2  \cf6 \strokec6 random\cf2 \strokec2 .\cf7 \strokec7 uniform\cf2 \strokec2 (\cf11 \strokec11 0\cf2 \strokec2 , \cf11 \strokec11 1\cf2 \strokec2 ) \cf10 \strokec10 <\cf2 \strokec2  \cf7 \strokec7 pAL\cf2 \strokec2 :\cb1 \
+\cb4                     \cf8 \strokec8 print\cf2 \strokec2 (\cf12 \strokec12 '    <vehicle id="down_\cf9 \strokec9 %i\cf12 \strokec12 " type="SUMO_DEFAULT_TYPE" route="always_left" depart="\cf9 \strokec9 %i\cf12 \strokec12 " color="1,0,0"/>'\cf2 \strokec2  \cf10 \strokec10 %\cf2 \strokec2  (\cb1 \
+\cb4                         \cf7 \strokec7 vehNr\cf2 \strokec2 , \cf7 \strokec7 i\cf2 \strokec2 ), \cf7 \strokec7 file\cf10 \strokec10 =\cf7 \strokec7 routes\cf2 \strokec2 )\cb1 \
+\cb4                     \cf7 \strokec7 vehNr\cf2 \strokec2  \cf10 \strokec10 +=\cf2 \strokec2  \cf11 \strokec11 1\cf2 \cb1 \strokec2 \
+\cb4                     \cf7 \strokec7 lastVeh\cf2 \strokec2  \cf10 \strokec10 =\cf2 \strokec2  \cf7 \strokec7 i\cf2 \cb1 \strokec2 \
+\cb4                 \cf5 \strokec5 if\cf2 \strokec2  \cf6 \strokec6 random\cf2 \strokec2 .\cf7 \strokec7 uniform\cf2 \strokec2 (\cf11 \strokec11 0\cf2 \strokec2 , \cf11 \strokec11 1\cf2 \strokec2 ) \cf10 \strokec10 <\cf2 \strokec2  \cf7 \strokec7 pAR\cf2 \strokec2 :\cb1 \
+\cb4                     \cf8 \strokec8 print\cf2 \strokec2 (\cf12 \strokec12 '    <vehicle id="down_\cf9 \strokec9 %i\cf12 \strokec12 " type="SUMO_DEFAULT_TYPE" route="always_right" depart="\cf9 \strokec9 %i\cf12 \strokec12 " color="1,0,0"/>'\cf2 \strokec2  \cf10 \strokec10 %\cf2 \strokec2  (\cb1 \
+\cb4                         \cf7 \strokec7 vehNr\cf2 \strokec2 , \cf7 \strokec7 i\cf2 \strokec2 ), \cf7 \strokec7 file\cf10 \strokec10 =\cf7 \strokec7 routes\cf2 \strokec2 )\cb1 \
+\cb4                     \cf7 \strokec7 vehNr\cf2 \strokec2  \cf10 \strokec10 +=\cf2 \strokec2  \cf11 \strokec11 1\cf2 \cb1 \strokec2 \
+\cb4                     \cf7 \strokec7 lastVeh\cf2 \strokec2  \cf10 \strokec10 =\cf2 \strokec2  \cf7 \strokec7 i\cf2 \cb1 \strokec2 \
+\cb4             \cf8 \strokec8 print\cf2 \strokec2 (\cf12 \strokec12 "</routes>"\cf2 \strokec2 , \cf7 \strokec7 file\cf10 \strokec10 =\cf7 \strokec7 routes\cf2 \strokec2 )\cb1 \
+\
+\
+\
+\cb4          \cb1 \
+\
+\cb4     \cf9 \strokec9 def\cf2 \strokec2  \cf8 \strokec8 get_options\cf2 \strokec2 (\cf7 \strokec7 self\cf2 \strokec2 ):\cb1 \
+\cb4         \cf7 \strokec7 optParser\cf2 \strokec2  \cf10 \strokec10 =\cf2 \strokec2  \cf6 \strokec6 optparse\cf2 \strokec2 .\cf6 \strokec6 OptionParser\cf2 \strokec2 ()\cb1 \
+\cb4         \cf7 \strokec7 optParser\cf2 \strokec2 .\cf8 \strokec8 add_option\cf2 \strokec2 (\cf12 \strokec12 "--nogui"\cf2 \strokec2 , \cf7 \strokec7 action\cf10 \strokec10 =\cf12 \strokec12 "store_true"\cf2 \strokec2 ,\cb1 \
+\cb4                              \cf7 \strokec7 default\cf10 \strokec10 =\cf9 \strokec9 False\cf2 \strokec2 , \cf7 \strokec7 help\cf10 \strokec10 =\cf12 \strokec12 "run the commandline version of sumo"\cf2 \strokec2 )\cb1 \
+\cb4         \cf7 \strokec7 options\cf2 \strokec2 , \cf7 \strokec7 args\cf2 \strokec2  \cf10 \strokec10 =\cf2 \strokec2  \cf7 \strokec7 optParser\cf2 \strokec2 .\cf8 \strokec8 parse_args\cf2 \strokec2 ()\cb1 \
+\cb4         \cf5 \strokec5 return\cf2 \strokec2  \cf7 \strokec7 options\cf2 \cb1 \strokec2 \
+\
+\
+\
+\
+\cb4     \cf9 \strokec9 def\cf2 \strokec2  \cf8 \strokec8 getState\cf2 \strokec2 (\cf7 \strokec7 self\cf2 \strokec2 ):\cb1 \
+\cb4         \cf7 \strokec7 positionMatrix\cf2 \strokec2  \cf10 \strokec10 =\cf2 \strokec2  []\cb1 \
+\cb4         \cf7 \strokec7 velocityMatrix\cf2 \strokec2  \cf10 \strokec10 =\cf2 \strokec2  []\cb1 \
+\
+\cb4         \cf7 \strokec7 cellLength\cf2 \strokec2  \cf10 \strokec10 =\cf2 \strokec2  \cf11 \strokec11 7\cf2 \cb1 \strokec2 \
+\cb4         \cf7 \strokec7 offset\cf2 \strokec2  \cf10 \strokec10 =\cf2 \strokec2  \cf11 \strokec11 1\cf2 \cb1 \strokec2 \
+\cb4         \cf7 \strokec7 speedLimit\cf2 \strokec2  \cf10 \strokec10 =\cf2 \strokec2  \cf11 \strokec11 14\cf2 \cb1 \strokec2 \
+\
+\cb4         \cf7 \strokec7 junctionPosition\cf2 \strokec2  \cf10 \strokec10 =\cf2 \strokec2  \cf6 \strokec6 traci\cf2 \strokec2 .\cf7 \strokec7 junction\cf2 \strokec2 .\cf8 \strokec8 getPosition\cf2 \strokec2 (\cf12 \strokec12 '0'\cf2 \strokec2 )[\cf11 \strokec11 0\cf2 \strokec2 ]\cb1 \
+\cb4         \cf7 \strokec7 vehicles_road1\cf2 \strokec2  \cf10 \strokec10 =\cf2 \strokec2  \cf6 \strokec6 traci\cf2 \strokec2 .\cf7 \strokec7 edge\cf2 \strokec2 .\cf8 \strokec8 getLastStepVehicleIDs\cf2 \strokec2 (\cf12 \strokec12 '1si'\cf2 \strokec2 )\cb1 \
+\cb4         \cf7 \strokec7 vehicles_road2\cf2 \strokec2  \cf10 \strokec10 =\cf2 \strokec2  \cf6 \strokec6 traci\cf2 \strokec2 .\cf7 \strokec7 edge\cf2 \strokec2 .\cf8 \strokec8 getLastStepVehicleIDs\cf2 \strokec2 (\cf12 \strokec12 '2si'\cf2 \strokec2 )\cb1 \
+\cb4         \cf7 \strokec7 vehicles_road3\cf2 \strokec2  \cf10 \strokec10 =\cf2 \strokec2  \cf6 \strokec6 traci\cf2 \strokec2 .\cf7 \strokec7 edge\cf2 \strokec2 .\cf8 \strokec8 getLastStepVehicleIDs\cf2 \strokec2 (\cf12 \strokec12 '3si'\cf2 \strokec2 )\cb1 \
+\cb4         \cf7 \strokec7 vehicles_road4\cf2 \strokec2  \cf10 \strokec10 =\cf2 \strokec2  \cf6 \strokec6 traci\cf2 \strokec2 .\cf7 \strokec7 edge\cf2 \strokec2 .\cf8 \strokec8 getLastStepVehicleIDs\cf2 \strokec2 (\cf12 \strokec12 '4si'\cf2 \strokec2 )\cb1 \
+\cb4         \cf5 \strokec5 for\cf2 \strokec2  \cf7 \strokec7 i\cf2 \strokec2  \cf5 \strokec5 in\cf2 \strokec2  \cf6 \strokec6 range\cf2 \strokec2 (\cf11 \strokec11 12\cf2 \strokec2 ):\cb1 \
+\cb4             \cf7 \strokec7 positionMatrix\cf2 \strokec2 .\cf8 \strokec8 append\cf2 \strokec2 ([])\cb1 \
+\cb4             \cf7 \strokec7 velocityMatrix\cf2 \strokec2 .\cf8 \strokec8 append\cf2 \strokec2 ([])\cb1 \
+\cb4             \cf5 \strokec5 for\cf2 \strokec2  \cf7 \strokec7 j\cf2 \strokec2  \cf5 \strokec5 in\cf2 \strokec2  \cf6 \strokec6 range\cf2 \strokec2 (\cf11 \strokec11 12\cf2 \strokec2 ):\cb1 \
+\cb4                 \cf7 \strokec7 positionMatrix\cf2 \strokec2 [\cf7 \strokec7 i\cf2 \strokec2 ].append(\cf11 \strokec11 0\cf2 \strokec2 )\cb1 \
+\cb4                 \cf7 \strokec7 velocityMatrix\cf2 \strokec2 [\cf7 \strokec7 i\cf2 \strokec2 ].append(\cf11 \strokec11 0\cf2 \strokec2 )\cb1 \
+\
+\cb4         \cf5 \strokec5 for\cf2 \strokec2  \cf7 \strokec7 v\cf2 \strokec2  \cf5 \strokec5 in\cf2 \strokec2  \cf7 \strokec7 vehicles_road1\cf2 \strokec2 :\cb1 \
+\cb4             \cf7 \strokec7 ind\cf2 \strokec2  \cf10 \strokec10 =\cf2 \strokec2  \cf6 \strokec6 int\cf2 \strokec2 (\cb1 \
+\cb4                 \cf8 \strokec8 abs\cf2 \strokec2 ((\cf7 \strokec7 junctionPosition\cf2 \strokec2  \cf10 \strokec10 -\cf2 \strokec2  \cf6 \strokec6 traci\cf2 \strokec2 .\cf7 \strokec7 vehicle\cf2 \strokec2 .\cf8 \strokec8 getPosition\cf2 \strokec2 (\cf7 \strokec7 v\cf2 \strokec2 )[\cf11 \strokec11 0\cf2 \strokec2 ] \cf10 \strokec10 -\cf2 \strokec2  \cf7 \strokec7 offset\cf2 \strokec2 )) \cf10 \strokec10 /\cf2 \strokec2  \cf7 \strokec7 cellLength\cf2 \strokec2 )\cb1 \
+\cb4             \cf5 \strokec5 if\cf2 \strokec2 (\cf7 \strokec7 ind\cf2 \strokec2  \cf10 \strokec10 <\cf2 \strokec2  \cf11 \strokec11 12\cf2 \strokec2 ):\cb1 \
+\cb4                 \cf7 \strokec7 positionMatrix\cf2 \strokec2 [\cf11 \strokec11 2\cf2 \strokec2  \cf10 \strokec10 -\cf2 \strokec2  \cf6 \strokec6 traci\cf2 \strokec2 .\cf7 \strokec7 vehicle\cf2 \strokec2 .\cf8 \strokec8 getLaneIndex\cf2 \strokec2 (\cf7 \strokec7 v\cf2 \strokec2 )][\cf11 \strokec11 11\cf2 \strokec2  \cf10 \strokec10 -\cf2 \strokec2  \cf7 \strokec7 ind\cf2 \strokec2 ] \cf10 \strokec10 =\cf2 \strokec2  \cf11 \strokec11 1\cf2 \cb1 \strokec2 \
+\cb4                 \cf7 \strokec7 velocityMatrix\cf2 \strokec2 [\cf11 \strokec11 2\cf2 \strokec2  \cf10 \strokec10 -\cf2 \strokec2  \cf6 \strokec6 traci\cf2 \strokec2 .\cf7 \strokec7 vehicle\cf2 \strokec2 .\cf8 \strokec8 getLaneIndex\cf2 \strokec2 (\cb1 \
+\cb4                     \cf7 \strokec7 v\cf2 \strokec2 )][\cf11 \strokec11 11\cf2 \strokec2  \cf10 \strokec10 -\cf2 \strokec2  \cf7 \strokec7 ind\cf2 \strokec2 ] \cf10 \strokec10 =\cf2 \strokec2  \cf6 \strokec6 traci\cf2 \strokec2 .\cf7 \strokec7 vehicle\cf2 \strokec2 .\cf8 \strokec8 getSpeed\cf2 \strokec2 (\cf7 \strokec7 v\cf2 \strokec2 ) \cf10 \strokec10 /\cf2 \strokec2  \cf7 \strokec7 speedLimit\cf2 \cb1 \strokec2 \
+\
+\cb4         \cf5 \strokec5 for\cf2 \strokec2  \cf7 \strokec7 v\cf2 \strokec2  \cf5 \strokec5 in\cf2 \strokec2  \cf7 \strokec7 vehicles_road2\cf2 \strokec2 :\cb1 \
+\cb4             \cf7 \strokec7 ind\cf2 \strokec2  \cf10 \strokec10 =\cf2 \strokec2  \cf6 \strokec6 int\cf2 \strokec2 (\cb1 \
+\cb4                 \cf8 \strokec8 abs\cf2 \strokec2 ((\cf7 \strokec7 junctionPosition\cf2 \strokec2  \cf10 \strokec10 -\cf2 \strokec2  \cf6 \strokec6 traci\cf2 \strokec2 .\cf7 \strokec7 vehicle\cf2 \strokec2 .\cf8 \strokec8 getPosition\cf2 \strokec2 (\cf7 \strokec7 v\cf2 \strokec2 )[\cf11 \strokec11 0\cf2 \strokec2 ] \cf10 \strokec10 +\cf2 \strokec2  \cf7 \strokec7 offset\cf2 \strokec2 )) \cf10 \strokec10 /\cf2 \strokec2  \cf7 \strokec7 cellLength\cf2 \strokec2 )\cb1 \
+\cb4             \cf5 \strokec5 if\cf2 \strokec2 (\cf7 \strokec7 ind\cf2 \strokec2  \cf10 \strokec10 <\cf2 \strokec2  \cf11 \strokec11 12\cf2 \strokec2 ):\cb1 \
+\cb4                 \cf7 \strokec7 positionMatrix\cf2 \strokec2 [\cf11 \strokec11 3\cf2 \strokec2  \cf10 \strokec10 +\cf2 \strokec2  \cf6 \strokec6 traci\cf2 \strokec2 .\cf7 \strokec7 vehicle\cf2 \strokec2 .\cf8 \strokec8 getLaneIndex\cf2 \strokec2 (\cf7 \strokec7 v\cf2 \strokec2 )][\cf7 \strokec7 ind\cf2 \strokec2 ] \cf10 \strokec10 =\cf2 \strokec2  \cf11 \strokec11 1\cf2 \cb1 \strokec2 \
+\cb4                 \cf7 \strokec7 velocityMatrix\cf2 \strokec2 [\cf11 \strokec11 3\cf2 \strokec2  \cf10 \strokec10 +\cf2 \strokec2  \cf6 \strokec6 traci\cf2 \strokec2 .\cf7 \strokec7 vehicle\cf2 \strokec2 .\cf8 \strokec8 getLaneIndex\cf2 \strokec2 (\cb1 \
+\cb4                     \cf7 \strokec7 v\cf2 \strokec2 )][\cf7 \strokec7 ind\cf2 \strokec2 ] \cf10 \strokec10 =\cf2 \strokec2  \cf6 \strokec6 traci\cf2 \strokec2 .\cf7 \strokec7 vehicle\cf2 \strokec2 .\cf8 \strokec8 getSpeed\cf2 \strokec2 (\cf7 \strokec7 v\cf2 \strokec2 ) \cf10 \strokec10 /\cf2 \strokec2  \cf7 \strokec7 speedLimit\cf2 \cb1 \strokec2 \
+\
+\cb4         \cf7 \strokec7 junctionPosition\cf2 \strokec2  \cf10 \strokec10 =\cf2 \strokec2  \cf6 \strokec6 traci\cf2 \strokec2 .\cf7 \strokec7 junction\cf2 \strokec2 .\cf8 \strokec8 getPosition\cf2 \strokec2 (\cf12 \strokec12 '0'\cf2 \strokec2 )[\cf11 \strokec11 1\cf2 \strokec2 ]\cb1 \
+\cb4         \cf5 \strokec5 for\cf2 \strokec2  \cf7 \strokec7 v\cf2 \strokec2  \cf5 \strokec5 in\cf2 \strokec2  \cf7 \strokec7 vehicles_road3\cf2 \strokec2 :\cb1 \
+\cb4             \cf7 \strokec7 ind\cf2 \strokec2  \cf10 \strokec10 =\cf2 \strokec2  \cf6 \strokec6 int\cf2 \strokec2 (\cb1 \
+\cb4                 \cf8 \strokec8 abs\cf2 \strokec2 ((\cf7 \strokec7 junctionPosition\cf2 \strokec2  \cf10 \strokec10 -\cf2 \strokec2  \cf6 \strokec6 traci\cf2 \strokec2 .\cf7 \strokec7 vehicle\cf2 \strokec2 .\cf8 \strokec8 getPosition\cf2 \strokec2 (\cf7 \strokec7 v\cf2 \strokec2 )[\cf11 \strokec11 1\cf2 \strokec2 ] \cf10 \strokec10 -\cf2 \strokec2  \cf7 \strokec7 offset\cf2 \strokec2 )) \cf10 \strokec10 /\cf2 \strokec2  \cf7 \strokec7 cellLength\cf2 \strokec2 )\cb1 \
+\cb4             \cf5 \strokec5 if\cf2 \strokec2 (\cf7 \strokec7 ind\cf2 \strokec2  \cf10 \strokec10 <\cf2 \strokec2  \cf11 \strokec11 12\cf2 \strokec2 ):\cb1 \
+\cb4                 \cf7 \strokec7 positionMatrix\cf2 \strokec2 [\cf11 \strokec11 6\cf2 \strokec2  \cf10 \strokec10 +\cf2 \strokec2  \cf11 \strokec11 2\cf2 \strokec2  \cf10 \strokec10 -\cf2 \cb1 \strokec2 \
+\cb4                                \cf6 \strokec6 traci\cf2 \strokec2 .\cf7 \strokec7 vehicle\cf2 \strokec2 .\cf8 \strokec8 getLaneIndex\cf2 \strokec2 (\cf7 \strokec7 v\cf2 \strokec2 )][\cf11 \strokec11 11\cf2 \strokec2  \cf10 \strokec10 -\cf2 \strokec2  \cf7 \strokec7 ind\cf2 \strokec2 ] \cf10 \strokec10 =\cf2 \strokec2  \cf11 \strokec11 1\cf2 \cb1 \strokec2 \
+\cb4                 \cf7 \strokec7 velocityMatrix\cf2 \strokec2 [\cf11 \strokec11 6\cf2 \strokec2  \cf10 \strokec10 +\cf2 \strokec2  \cf11 \strokec11 2\cf2 \strokec2  \cf10 \strokec10 -\cf2 \strokec2  \cf6 \strokec6 traci\cf2 \strokec2 .\cf7 \strokec7 vehicle\cf2 \strokec2 .\cf8 \strokec8 getLaneIndex\cf2 \strokec2 (\cb1 \
+\cb4                     \cf7 \strokec7 v\cf2 \strokec2 )][\cf11 \strokec11 11\cf2 \strokec2  \cf10 \strokec10 -\cf2 \strokec2  \cf7 \strokec7 ind\cf2 \strokec2 ] \cf10 \strokec10 =\cf2 \strokec2  \cf6 \strokec6 traci\cf2 \strokec2 .\cf7 \strokec7 vehicle\cf2 \strokec2 .\cf8 \strokec8 getSpeed\cf2 \strokec2 (\cf7 \strokec7 v\cf2 \strokec2 ) \cf10 \strokec10 /\cf2 \strokec2  \cf7 \strokec7 speedLimit\cf2 \cb1 \strokec2 \
+\
+\cb4         \cf5 \strokec5 for\cf2 \strokec2  \cf7 \strokec7 v\cf2 \strokec2  \cf5 \strokec5 in\cf2 \strokec2  \cf7 \strokec7 vehicles_road4\cf2 \strokec2 :\cb1 \
+\cb4             \cf7 \strokec7 ind\cf2 \strokec2  \cf10 \strokec10 =\cf2 \strokec2  \cf6 \strokec6 int\cf2 \strokec2 (\cb1 \
+\cb4                 \cf8 \strokec8 abs\cf2 \strokec2 ((\cf7 \strokec7 junctionPosition\cf2 \strokec2  \cf10 \strokec10 -\cf2 \strokec2  \cf6 \strokec6 traci\cf2 \strokec2 .\cf7 \strokec7 vehicle\cf2 \strokec2 .\cf8 \strokec8 getPosition\cf2 \strokec2 (\cf7 \strokec7 v\cf2 \strokec2 )[\cf11 \strokec11 1\cf2 \strokec2 ] \cf10 \strokec10 +\cf2 \strokec2  \cf7 \strokec7 offset\cf2 \strokec2 )) \cf10 \strokec10 /\cf2 \strokec2  \cf7 \strokec7 cellLength\cf2 \strokec2 )\cb1 \
+\cb4             \cf5 \strokec5 if\cf2 \strokec2 (\cf7 \strokec7 ind\cf2 \strokec2  \cf10 \strokec10 <\cf2 \strokec2  \cf11 \strokec11 12\cf2 \strokec2 ):\cb1 \
+\cb4                 \cf7 \strokec7 positionMatrix\cf2 \strokec2 [\cf11 \strokec11 9\cf2 \strokec2  \cf10 \strokec10 +\cf2 \strokec2  \cf6 \strokec6 traci\cf2 \strokec2 .\cf7 \strokec7 vehicle\cf2 \strokec2 .\cf8 \strokec8 getLaneIndex\cf2 \strokec2 (\cf7 \strokec7 v\cf2 \strokec2 )][\cf7 \strokec7 ind\cf2 \strokec2 ] \cf10 \strokec10 =\cf2 \strokec2  \cf11 \strokec11 1\cf2 \cb1 \strokec2 \
+\cb4                 \cf7 \strokec7 velocityMatrix\cf2 \strokec2 [\cf11 \strokec11 9\cf2 \strokec2  \cf10 \strokec10 +\cf2 \strokec2  \cf6 \strokec6 traci\cf2 \strokec2 .\cf7 \strokec7 vehicle\cf2 \strokec2 .\cf8 \strokec8 getLaneIndex\cf2 \strokec2 (\cb1 \
+\cb4                     \cf7 \strokec7 v\cf2 \strokec2 )][\cf7 \strokec7 ind\cf2 \strokec2 ] \cf10 \strokec10 =\cf2 \strokec2  \cf6 \strokec6 traci\cf2 \strokec2 .\cf7 \strokec7 vehicle\cf2 \strokec2 .\cf8 \strokec8 getSpeed\cf2 \strokec2 (\cf7 \strokec7 v\cf2 \strokec2 ) \cf10 \strokec10 /\cf2 \strokec2  \cf7 \strokec7 speedLimit\cf2 \cb1 \strokec2 \
+\
+\cb4         \cf7 \strokec7 light\cf2 \strokec2  \cf10 \strokec10 =\cf2 \strokec2  []\cb1 \
+\cb4         \cf5 \strokec5 if\cf2 \strokec2 (\cf6 \strokec6 traci\cf2 \strokec2 .\cf7 \strokec7 trafficlight\cf2 \strokec2 .\cf8 \strokec8 getPhase\cf2 \strokec2 (\cf12 \strokec12 '0'\cf2 \strokec2 ) \cf10 \strokec10 ==\cf2 \strokec2  \cf11 \strokec11 4\cf2 \strokec2 ):\cb1 \
+\cb4             \cf7 \strokec7 light\cf2 \strokec2  \cf10 \strokec10 =\cf2 \strokec2  [\cf11 \strokec11 1\cf2 \strokec2 , \cf11 \strokec11 0\cf2 \strokec2 ]\cb1 \
+\cb4         \cf5 \strokec5 else\cf2 \strokec2 :\cb1 \
+\cb4             \cf7 \strokec7 light\cf2 \strokec2  \cf10 \strokec10 =\cf2 \strokec2  [\cf11 \strokec11 0\cf2 \strokec2 , \cf11 \strokec11 1\cf2 \strokec2 ]\cb1 \
+\
+\cb4         \cf7 \strokec7 position\cf2 \strokec2  \cf10 \strokec10 =\cf2 \strokec2  \cf6 \strokec6 np\cf2 \strokec2 .\cf8 \strokec8 array\cf2 \strokec2 (\cf7 \strokec7 positionMatrix\cf2 \strokec2 )\cb1 \
+\cb4         \cf7 \strokec7 position\cf2 \strokec2  \cf10 \strokec10 =\cf2 \strokec2  \cf7 \strokec7 position\cf2 \strokec2 .\cf8 \strokec8 reshape\cf2 \strokec2 (\cf11 \strokec11 1\cf2 \strokec2 , \cf11 \strokec11 12\cf2 \strokec2 , \cf11 \strokec11 12\cf2 \strokec2 , \cf11 \strokec11 1\cf2 \strokec2 )\cb1 \
+\
+\cb4         \cf7 \strokec7 velocity\cf2 \strokec2  \cf10 \strokec10 =\cf2 \strokec2  \cf6 \strokec6 np\cf2 \strokec2 .\cf8 \strokec8 array\cf2 \strokec2 (\cf7 \strokec7 velocityMatrix\cf2 \strokec2 )\cb1 \
+\cb4         \cf7 \strokec7 velocity\cf2 \strokec2  \cf10 \strokec10 =\cf2 \strokec2  \cf7 \strokec7 velocity\cf2 \strokec2 .\cf8 \strokec8 reshape\cf2 \strokec2 (\cf11 \strokec11 1\cf2 \strokec2 , \cf11 \strokec11 12\cf2 \strokec2 , \cf11 \strokec11 12\cf2 \strokec2 , \cf11 \strokec11 1\cf2 \strokec2 )\cb1 \
+\
+\cb4         \cf7 \strokec7 lgts\cf2 \strokec2  \cf10 \strokec10 =\cf2 \strokec2  \cf6 \strokec6 np\cf2 \strokec2 .\cf8 \strokec8 array\cf2 \strokec2 (\cf7 \strokec7 light\cf2 \strokec2 )\cb1 \
+\cb4         \cf7 \strokec7 lgts\cf2 \strokec2  \cf10 \strokec10 =\cf2 \strokec2  \cf7 \strokec7 lgts\cf2 \strokec2 .\cf8 \strokec8 reshape\cf2 \strokec2 (\cf11 \strokec11 1\cf2 \strokec2 , \cf11 \strokec11 2\cf2 \strokec2 , \cf11 \strokec11 1\cf2 \strokec2 )\cb1 \
+\
+\cb4         \cf5 \strokec5 return\cf2 \strokec2  [\cf7 \strokec7 position\cf2 \strokec2 , \cf7 \strokec7 velocity\cf2 \strokec2 , \cf7 \strokec7 lgts\cf2 \strokec2 ]\cb1 \
+\
+\
+\
+\
+\pard\pardeftab720\partightenfactor0
+\cf5 \cb4 \strokec5 if\cf2 \strokec2  \cf7 \strokec7 __name__\cf2 \strokec2  \cf10 \strokec10 ==\cf2 \strokec2  \cf12 \strokec12 '__main__'\cf2 \strokec2 :\cb1 \
+\pard\pardeftab720\partightenfactor0
+\cf2 \cb4     \cf7 \strokec7 sumoInt\cf2 \strokec2  \cf10 \strokec10 =\cf2 \strokec2  \cf6 \strokec6 SumoIntersection\cf2 \strokec2 ()\cb1 \
+\cb4     \cf3 \strokec3 # this script has been called from the command line. It will start sumo as a\cf2 \cb1 \strokec2 \
+\cb4     \cf3 \strokec3 # server, then connect and run\cf2 \cb1 \strokec2 \
+\cb4     \cf7 \strokec7 options\cf2 \strokec2  \cf10 \strokec10 =\cf2 \strokec2  \cf7 \strokec7 sumoInt\cf2 \strokec2 .\cf8 \strokec8 get_options\cf2 \strokec2 ()\cb1 \
+\
+\cb4     \cf5 \strokec5 if\cf2 \strokec2  \cf7 \strokec7 options\cf2 \strokec2 .nogui:\cb1 \
+\cb4     \cf3 \strokec3 #if True:\cf2 \cb1 \strokec2 \
+\cb4         \cf7 \strokec7 sumoBinary\cf2 \strokec2  \cf10 \strokec10 =\cf2 \strokec2  \cf8 \strokec8 checkBinary\cf2 \strokec2 (\cf12 \strokec12 'sumo'\cf2 \strokec2 )\cb1 \
+\cb4     \cf5 \strokec5 else\cf2 \strokec2 :\cb1 \
+\cb4         \cf7 \strokec7 sumoBinary\cf2 \strokec2  \cf10 \strokec10 =\cf2 \strokec2  \cf8 \strokec8 checkBinary\cf2 \strokec2 (\cf12 \strokec12 'sumo-gui'\cf2 \strokec2 )\cb1 \
+\cb4     \cf7 \strokec7 sumoInt\cf2 \strokec2 .\cf8 \strokec8 generate_routefile\cf2 \strokec2 ()\cb1 \
+\
+\cb4     \cf3 \strokec3 # Main logic\cf2 \cb1 \strokec2 \
+\cb4     \cf3 \strokec3 # parameters\cf2 \cb1 \strokec2 \
+\cb4     \cf7 \strokec7 episodes\cf2 \strokec2  \cf10 \strokec10 =\cf2 \strokec2  \cf11 \strokec11 2000\cf2 \cb1 \strokec2 \
+\cb4     \cf7 \strokec7 batch_size\cf2 \strokec2  \cf10 \strokec10 =\cf2 \strokec2  \cf11 \strokec11 32\cf2 \cb1 \strokec2 \
+\
+\cb4     \cf7 \strokec7 tg\cf2 \strokec2  \cf10 \strokec10 =\cf2 \strokec2  \cf11 \strokec11 20\cf2 \cb1 \strokec2 \
+\cb4     \cf7 \strokec7 ty\cf2 \strokec2  \cf10 \strokec10 =\cf2 \strokec2  \cf11 \strokec11 4\cf2 \cb1 \strokec2 \
+\cb4     \cf7 \strokec7 agent\cf2 \strokec2  \cf10 \strokec10 =\cf2 \strokec2  \cf6 \strokec6 DQNAgent\cf2 \strokec2 ()\cb1 \
+\
+\
+\
+\
+\cb4     \cf5 \strokec5 try\cf2 \strokec2 :\cb1 \
+\cb4         \cf7 \strokec7 agent\cf2 \strokec2 .\cf8 \strokec8 load\cf2 \strokec2 (\cf12 \strokec12 'Models/reinf_traf_control.h5'\cf2 \strokec2 )\cb1 \
+\cb4     \cf5 \strokec5 except\cf2 \strokec2 :\cb1 \
+\cb4         \cf8 \strokec8 print\cf2 \strokec2 (\cf12 \strokec12 'No models found'\cf2 \strokec2 )\cb1 \
+\
+\
+\
+\
+\cb4     \cf5 \strokec5 for\cf2 \strokec2  \cf7 \strokec7 e\cf2 \strokec2  \cf5 \strokec5 in\cf2 \strokec2  \cf6 \strokec6 range\cf2 \strokec2 (\cf7 \strokec7 episodes\cf2 \strokec2 ):\cb1 \
+\cb4         \cf3 \strokec3 # DNN Agent\cf2 \cb1 \strokec2 \
+\cb4         \cf3 \strokec3 # Initialize DNN with random weights\cf2 \cb1 \strokec2 \
+\cb4         \cf3 \strokec3 # Initialize target network with same weights as DNN Network\cf2 \cb1 \strokec2 \
+\cb4         \cf7 \strokec7 log\cf2 \strokec2  \cf10 \strokec10 =\cf2 \strokec2  \cf8 \strokec8 open\cf2 \strokec2 (\cf12 \strokec12 'log.txt'\cf2 \strokec2 , \cf12 \strokec12 'w'\cf2 \strokec2 )\cb1 \
+\cb4         \cf7 \strokec7 step\cf2 \strokec2  \cf10 \strokec10 =\cf2 \strokec2  \cf11 \strokec11 0\cf2 \cb1 \strokec2 \
+\cb4         \cf7 \strokec7 waiting_time\cf2 \strokec2  \cf10 \strokec10 =\cf2 \strokec2  \cf11 \strokec11 0\cf2 \cb1 \strokec2 \
+\cb4         \cf7 \strokec7 reward1\cf2 \strokec2  \cf10 \strokec10 =\cf2 \strokec2  \cf11 \strokec11 0\cf2 \cb1 \strokec2 \
+\cb4         \cf7 \strokec7 reward2\cf2 \strokec2  \cf10 \strokec10 =\cf2 \strokec2  \cf11 \strokec11 0\cf2 \cb1 \strokec2 \
+\cb4         \cf7 \strokec7 total_reward\cf2 \strokec2  \cf10 \strokec10 =\cf2 \strokec2  \cf7 \strokec7 reward1\cf2 \strokec2  \cf10 \strokec10 -\cf2 \strokec2  \cf7 \strokec7 reward2\cf2 \cb1 \strokec2 \
+\cb4         \cf7 \strokec7 stepz\cf2 \strokec2  \cf10 \strokec10 =\cf2 \strokec2  \cf11 \strokec11 0\cf2 \cb1 \strokec2 \
+\cb4         \cf7 \strokec7 action\cf2 \strokec2  \cf10 \strokec10 =\cf2 \strokec2  \cf11 \strokec11 0\cf2 \cb1 \strokec2 \
+\
+\cb4         \cf6 \strokec6 traci\cf2 \strokec2 .\cf8 \strokec8 start\cf2 \strokec2 ([\cf7 \strokec7 sumoBinary\cf2 \strokec2 , \cf12 \strokec12 "-c"\cf2 \strokec2 , \cf12 \strokec12 "cross3ltl.sumocfg"\cf2 \strokec2 , \cf12 \strokec12 '--start'\cf2 \strokec2 ])\cb1 \
+\cb4         \cf6 \strokec6 traci\cf2 \strokec2 .\cf7 \strokec7 trafficlight\cf2 \strokec2 .\cf8 \strokec8 setPhase\cf2 \strokec2 (\cf12 \strokec12 "0"\cf2 \strokec2 , \cf11 \strokec11 0\cf2 \strokec2 )\cb1 \
+\cb4         \cf6 \strokec6 traci\cf2 \strokec2 .\cf7 \strokec7 trafficlight\cf2 \strokec2 .\cf8 \strokec8 setPhaseDuration\cf2 \strokec2 (\cf12 \strokec12 "0"\cf2 \strokec2 , \cf11 \strokec11 200\cf2 \strokec2 )\cb1 \
+\
+\
+\
+\cb4         \cf5 \strokec5 while\cf2 \strokec2  \cf6 \strokec6 traci\cf2 \strokec2 .\cf7 \strokec7 simulation\cf2 \strokec2 .\cf8 \strokec8 getMinExpectedNumber\cf2 \strokec2 () \cf10 \strokec10 >\cf2 \strokec2  \cf11 \strokec11 0\cf2 \strokec2  \cf9 \strokec9 and\cf2 \strokec2  \cf7 \strokec7 stepz\cf2 \strokec2  \cf10 \strokec10 <\cf2 \strokec2  \cf11 \strokec11 7000\cf2 \strokec2 :\cb1 \
+\cb4             \cf6 \strokec6 traci\cf2 \strokec2 .\cf8 \strokec8 simulationStep\cf2 \strokec2 ()\cb1 \
+\cb4             \cf7 \strokec7 state\cf2 \strokec2  \cf10 \strokec10 =\cf2 \strokec2  \cf7 \strokec7 sumoInt\cf2 \strokec2 .\cf8 \strokec8 getState\cf2 \strokec2 ()\cb1 \
+\cb4             \cf7 \strokec7 action\cf2 \strokec2  \cf10 \strokec10 =\cf2 \strokec2  \cf7 \strokec7 agent\cf2 \strokec2 .\cf8 \strokec8 act\cf2 \strokec2 (\cf7 \strokec7 state\cf2 \strokec2 )\cb1 \
+\cb4             \cf7 \strokec7 light\cf2 \strokec2  \cf10 \strokec10 =\cf2 \strokec2  \cf7 \strokec7 state\cf2 \strokec2 [\cf11 \strokec11 2\cf2 \strokec2 ]\cb1 \
+\
+\
+\
+\cb4             \cf5 \strokec5 if\cf2 \strokec2 (\cf7 \strokec7 action\cf2 \strokec2  \cf10 \strokec10 ==\cf2 \strokec2  \cf11 \strokec11 0\cf2 \strokec2  \cf9 \strokec9 and\cf2 \strokec2  \cf7 \strokec7 light\cf2 \strokec2 [\cf11 \strokec11 0\cf2 \strokec2 ][\cf11 \strokec11 0\cf2 \strokec2 ][\cf11 \strokec11 0\cf2 \strokec2 ] \cf10 \strokec10 ==\cf2 \strokec2  \cf11 \strokec11 0\cf2 \strokec2 ):\cb1 \
+\cb4                 \cf3 \strokec3 # Transition Phase\cf2 \cb1 \strokec2 \
+\cb4                 \cf5 \strokec5 for\cf2 \strokec2  \cf7 \strokec7 i\cf2 \strokec2  \cf5 \strokec5 in\cf2 \strokec2  \cf6 \strokec6 range\cf2 \strokec2 (\cf11 \strokec11 6\cf2 \strokec2 ):\cb1 \
+\cb4                     \cf7 \strokec7 stepz\cf2 \strokec2  \cf10 \strokec10 +=\cf2 \strokec2  \cf11 \strokec11 1\cf2 \cb1 \strokec2 \
+\cb4                     \cf6 \strokec6 traci\cf2 \strokec2 .\cf7 \strokec7 trafficlight\cf2 \strokec2 .\cf8 \strokec8 setPhase\cf2 \strokec2 (\cf12 \strokec12 '0'\cf2 \strokec2 , \cf11 \strokec11 1\cf2 \strokec2 )\cb1 \
+\cb4                     \cf7 \strokec7 waiting_time\cf2 \strokec2  \cf10 \strokec10 +=\cf2 \strokec2  (\cf6 \strokec6 traci\cf2 \strokec2 .\cf7 \strokec7 edge\cf2 \strokec2 .\cf8 \strokec8 getLastStepHaltingNumber\cf2 \strokec2 (\cf12 \strokec12 '1si'\cf2 \strokec2 ) \cf10 \strokec10 +\cf2 \strokec2  \cf6 \strokec6 traci\cf2 \strokec2 .\cf7 \strokec7 edge\cf2 \strokec2 .\cf8 \strokec8 getLastStepHaltingNumber\cf2 \strokec2 (\cb1 \
+\cb4                         \cf12 \strokec12 '2si'\cf2 \strokec2 ) \cf10 \strokec10 +\cf2 \strokec2  \cf6 \strokec6 traci\cf2 \strokec2 .\cf7 \strokec7 edge\cf2 \strokec2 .\cf8 \strokec8 getLastStepHaltingNumber\cf2 \strokec2 (\cf12 \strokec12 '3si'\cf2 \strokec2 ) \cf10 \strokec10 +\cf2 \strokec2  \cf6 \strokec6 traci\cf2 \strokec2 .\cf7 \strokec7 edge\cf2 \strokec2 .\cf8 \strokec8 getLastStepHaltingNumber\cf2 \strokec2 (\cf12 \strokec12 '4si'\cf2 \strokec2 ))\cb1 \
+\cb4                     \cf6 \strokec6 traci\cf2 \strokec2 .\cf8 \strokec8 simulationStep\cf2 \strokec2 ()\cb1 \
+\cb4                 \cf5 \strokec5 for\cf2 \strokec2  \cf7 \strokec7 i\cf2 \strokec2  \cf5 \strokec5 in\cf2 \strokec2  \cf6 \strokec6 range\cf2 \strokec2 (\cf11 \strokec11 10\cf2 \strokec2 ):\cb1 \
+\cb4                     \cf7 \strokec7 stepz\cf2 \strokec2  \cf10 \strokec10 +=\cf2 \strokec2  \cf11 \strokec11 1\cf2 \cb1 \strokec2 \
+\cb4                     \cf6 \strokec6 traci\cf2 \strokec2 .\cf7 \strokec7 trafficlight\cf2 \strokec2 .\cf8 \strokec8 setPhase\cf2 \strokec2 (\cf12 \strokec12 '0'\cf2 \strokec2 , \cf11 \strokec11 2\cf2 \strokec2 )\cb1 \
+\cb4                     \cf7 \strokec7 waiting_time\cf2 \strokec2  \cf10 \strokec10 +=\cf2 \strokec2  (\cf6 \strokec6 traci\cf2 \strokec2 .\cf7 \strokec7 edge\cf2 \strokec2 .\cf8 \strokec8 getLastStepHaltingNumber\cf2 \strokec2 (\cf12 \strokec12 '1si'\cf2 \strokec2 ) \cf10 \strokec10 +\cf2 \strokec2  \cf6 \strokec6 traci\cf2 \strokec2 .\cf7 \strokec7 edge\cf2 \strokec2 .\cf8 \strokec8 getLastStepHaltingNumber\cf2 \strokec2 (\cb1 \
+\cb4                         \cf12 \strokec12 '2si'\cf2 \strokec2 ) \cf10 \strokec10 +\cf2 \strokec2  \cf6 \strokec6 traci\cf2 \strokec2 .\cf7 \strokec7 edge\cf2 \strokec2 .\cf8 \strokec8 getLastStepHaltingNumber\cf2 \strokec2 (\cf12 \strokec12 '3si'\cf2 \strokec2 ) \cf10 \strokec10 +\cf2 \strokec2  \cf6 \strokec6 traci\cf2 \strokec2 .\cf7 \strokec7 edge\cf2 \strokec2 .\cf8 \strokec8 getLastStepHaltingNumber\cf2 \strokec2 (\cf12 \strokec12 '4si'\cf2 \strokec2 ))\cb1 \
+\cb4                     \cf6 \strokec6 traci\cf2 \strokec2 .\cf8 \strokec8 simulationStep\cf2 \strokec2 ()\cb1 \
+\cb4                 \cf5 \strokec5 for\cf2 \strokec2  \cf7 \strokec7 i\cf2 \strokec2  \cf5 \strokec5 in\cf2 \strokec2  \cf6 \strokec6 range\cf2 \strokec2 (\cf11 \strokec11 6\cf2 \strokec2 ):\cb1 \
+\cb4                     \cf7 \strokec7 stepz\cf2 \strokec2  \cf10 \strokec10 +=\cf2 \strokec2  \cf11 \strokec11 1\cf2 \cb1 \strokec2 \
+\cb4                     \cf6 \strokec6 traci\cf2 \strokec2 .\cf7 \strokec7 trafficlight\cf2 \strokec2 .\cf8 \strokec8 setPhase\cf2 \strokec2 (\cf12 \strokec12 '0'\cf2 \strokec2 , \cf11 \strokec11 3\cf2 \strokec2 )\cb1 \
+\cb4                     \cf7 \strokec7 waiting_time\cf2 \strokec2  \cf10 \strokec10 +=\cf2 \strokec2  (\cf6 \strokec6 traci\cf2 \strokec2 .\cf7 \strokec7 edge\cf2 \strokec2 .\cf8 \strokec8 getLastStepHaltingNumber\cf2 \strokec2 (\cf12 \strokec12 '1si'\cf2 \strokec2 ) \cf10 \strokec10 +\cf2 \strokec2  \cf6 \strokec6 traci\cf2 \strokec2 .\cf7 \strokec7 edge\cf2 \strokec2 .\cf8 \strokec8 getLastStepHaltingNumber\cf2 \strokec2 (\cb1 \
+\cb4                         \cf12 \strokec12 '2si'\cf2 \strokec2 ) \cf10 \strokec10 +\cf2 \strokec2  \cf6 \strokec6 traci\cf2 \strokec2 .\cf7 \strokec7 edge\cf2 \strokec2 .\cf8 \strokec8 getLastStepHaltingNumber\cf2 \strokec2 (\cf12 \strokec12 '3si'\cf2 \strokec2 ) \cf10 \strokec10 +\cf2 \strokec2  \cf6 \strokec6 traci\cf2 \strokec2 .\cf7 \strokec7 edge\cf2 \strokec2 .\cf8 \strokec8 getLastStepHaltingNumber\cf2 \strokec2 (\cf12 \strokec12 '4si'\cf2 \strokec2 ))\cb1 \
+\cb4                     \cf6 \strokec6 traci\cf2 \strokec2 .\cf8 \strokec8 simulationStep\cf2 \strokec2 ()\cb1 \
+\
+\
+\
+\
+\cb4                 \cf3 \strokec3 # Action Execution\cf2 \cb1 \strokec2 \
+\cb4                 \cf7 \strokec7 reward1\cf2 \strokec2  \cf10 \strokec10 =\cf2 \strokec2  \cf6 \strokec6 traci\cf2 \strokec2 .\cf7 \strokec7 edge\cf2 \strokec2 .\cf8 \strokec8 getLastStepVehicleNumber\cf2 \strokec2 (\cb1 \
+\cb4                     \cf12 \strokec12 '1si'\cf2 \strokec2 ) \cf10 \strokec10 +\cf2 \strokec2  \cf6 \strokec6 traci\cf2 \strokec2 .\cf7 \strokec7 edge\cf2 \strokec2 .\cf8 \strokec8 getLastStepVehicleNumber\cf2 \strokec2 (\cf12 \strokec12 '2si'\cf2 \strokec2 )\cb1 \
+\cb4                 \cf7 \strokec7 reward2\cf2 \strokec2  \cf10 \strokec10 =\cf2 \strokec2  \cf6 \strokec6 traci\cf2 \strokec2 .\cf7 \strokec7 edge\cf2 \strokec2 .\cf8 \strokec8 getLastStepHaltingNumber\cf2 \strokec2 (\cb1 \
+\cb4                     \cf12 \strokec12 '3si'\cf2 \strokec2 ) \cf10 \strokec10 +\cf2 \strokec2  \cf6 \strokec6 traci\cf2 \strokec2 .\cf7 \strokec7 edge\cf2 \strokec2 .\cf8 \strokec8 getLastStepHaltingNumber\cf2 \strokec2 (\cf12 \strokec12 '4si'\cf2 \strokec2 )\cb1 \
+\cb4                 \cf5 \strokec5 for\cf2 \strokec2  \cf7 \strokec7 i\cf2 \strokec2  \cf5 \strokec5 in\cf2 \strokec2  \cf6 \strokec6 range\cf2 \strokec2 (\cf11 \strokec11 10\cf2 \strokec2 ):\cb1 \
+\cb4                     \cf7 \strokec7 stepz\cf2 \strokec2  \cf10 \strokec10 +=\cf2 \strokec2  \cf11 \strokec11 1\cf2 \cb1 \strokec2 \
+\cb4                     \cf6 \strokec6 traci\cf2 \strokec2 .\cf7 \strokec7 trafficlight\cf2 \strokec2 .\cf8 \strokec8 setPhase\cf2 \strokec2 (\cf12 \strokec12 '0'\cf2 \strokec2 , \cf11 \strokec11 4\cf2 \strokec2 )\cb1 \
+\cb4                     \cf7 \strokec7 reward1\cf2 \strokec2  \cf10 \strokec10 +=\cf2 \strokec2  \cf6 \strokec6 traci\cf2 \strokec2 .\cf7 \strokec7 edge\cf2 \strokec2 .\cf8 \strokec8 getLastStepVehicleNumber\cf2 \strokec2 (\cb1 \
+\cb4                         \cf12 \strokec12 '1si'\cf2 \strokec2 ) \cf10 \strokec10 +\cf2 \strokec2  \cf6 \strokec6 traci\cf2 \strokec2 .\cf7 \strokec7 edge\cf2 \strokec2 .\cf8 \strokec8 getLastStepVehicleNumber\cf2 \strokec2 (\cf12 \strokec12 '2si'\cf2 \strokec2 )\cb1 \
+\cb4                     \cf7 \strokec7 reward2\cf2 \strokec2  \cf10 \strokec10 +=\cf2 \strokec2  \cf6 \strokec6 traci\cf2 \strokec2 .\cf7 \strokec7 edge\cf2 \strokec2 .\cf8 \strokec8 getLastStepHaltingNumber\cf2 \strokec2 (\cb1 \
+\cb4                         \cf12 \strokec12 '3si'\cf2 \strokec2 ) \cf10 \strokec10 +\cf2 \strokec2  \cf6 \strokec6 traci\cf2 \strokec2 .\cf7 \strokec7 edge\cf2 \strokec2 .\cf8 \strokec8 getLastStepHaltingNumber\cf2 \strokec2 (\cf12 \strokec12 '4si'\cf2 \strokec2 )\cb1 \
+\cb4                     \cf7 \strokec7 waiting_time\cf2 \strokec2  \cf10 \strokec10 +=\cf2 \strokec2  (\cf6 \strokec6 traci\cf2 \strokec2 .\cf7 \strokec7 edge\cf2 \strokec2 .\cf8 \strokec8 getLastStepHaltingNumber\cf2 \strokec2 (\cf12 \strokec12 '1si'\cf2 \strokec2 ) \cf10 \strokec10 +\cf2 \strokec2  \cf6 \strokec6 traci\cf2 \strokec2 .\cf7 \strokec7 edge\cf2 \strokec2 .\cf8 \strokec8 getLastStepHaltingNumber\cf2 \strokec2 (\cb1 \
+\cb4                         \cf12 \strokec12 '2si'\cf2 \strokec2 ) \cf10 \strokec10 +\cf2 \strokec2  \cf6 \strokec6 traci\cf2 \strokec2 .\cf7 \strokec7 edge\cf2 \strokec2 .\cf8 \strokec8 getLastStepHaltingNumber\cf2 \strokec2 (\cf12 \strokec12 '3si'\cf2 \strokec2 ) \cf10 \strokec10 +\cf2 \strokec2  \cf6 \strokec6 traci\cf2 \strokec2 .\cf7 \strokec7 edge\cf2 \strokec2 .\cf8 \strokec8 getLastStepHaltingNumber\cf2 \strokec2 (\cf12 \strokec12 '4si'\cf2 \strokec2 ))\cb1 \
+\cb4                     \cf6 \strokec6 traci\cf2 \strokec2 .\cf8 \strokec8 simulationStep\cf2 \strokec2 ()\cb1 \
+\
+\
+\
+\
+\cb4             \cf5 \strokec5 if\cf2 \strokec2 (\cf7 \strokec7 action\cf2 \strokec2  \cf10 \strokec10 ==\cf2 \strokec2  \cf11 \strokec11 0\cf2 \strokec2  \cf9 \strokec9 and\cf2 \strokec2  \cf7 \strokec7 light\cf2 \strokec2 [\cf11 \strokec11 0\cf2 \strokec2 ][\cf11 \strokec11 0\cf2 \strokec2 ][\cf11 \strokec11 0\cf2 \strokec2 ] \cf10 \strokec10 ==\cf2 \strokec2  \cf11 \strokec11 1\cf2 \strokec2 ):\cb1 \
+\cb4                 \cf3 \strokec3 # Action Execution, no state change\cf2 \cb1 \strokec2 \
+\cb4                 \cf7 \strokec7 reward1\cf2 \strokec2  \cf10 \strokec10 =\cf2 \strokec2  \cf6 \strokec6 traci\cf2 \strokec2 .\cf7 \strokec7 edge\cf2 \strokec2 .\cf8 \strokec8 getLastStepVehicleNumber\cf2 \strokec2 (\cb1 \
+\cb4                     \cf12 \strokec12 '1si'\cf2 \strokec2 ) \cf10 \strokec10 +\cf2 \strokec2  \cf6 \strokec6 traci\cf2 \strokec2 .\cf7 \strokec7 edge\cf2 \strokec2 .\cf8 \strokec8 getLastStepVehicleNumber\cf2 \strokec2 (\cf12 \strokec12 '2si'\cf2 \strokec2 )\cb1 \
+\cb4                 \cf7 \strokec7 reward2\cf2 \strokec2  \cf10 \strokec10 =\cf2 \strokec2  \cf6 \strokec6 traci\cf2 \strokec2 .\cf7 \strokec7 edge\cf2 \strokec2 .\cf8 \strokec8 getLastStepHaltingNumber\cf2 \strokec2 (\cb1 \
+\cb4                     \cf12 \strokec12 '3si'\cf2 \strokec2 ) \cf10 \strokec10 +\cf2 \strokec2  \cf6 \strokec6 traci\cf2 \strokec2 .\cf7 \strokec7 edge\cf2 \strokec2 .\cf8 \strokec8 getLastStepHaltingNumber\cf2 \strokec2 (\cf12 \strokec12 '4si'\cf2 \strokec2 )\cb1 \
+\cb4                 \cf5 \strokec5 for\cf2 \strokec2  \cf7 \strokec7 i\cf2 \strokec2  \cf5 \strokec5 in\cf2 \strokec2  \cf6 \strokec6 range\cf2 \strokec2 (\cf11 \strokec11 10\cf2 \strokec2 ):\cb1 \
+\cb4                     \cf7 \strokec7 stepz\cf2 \strokec2  \cf10 \strokec10 +=\cf2 \strokec2  \cf11 \strokec11 1\cf2 \cb1 \strokec2 \
+\cb4                     \cf6 \strokec6 traci\cf2 \strokec2 .\cf7 \strokec7 trafficlight\cf2 \strokec2 .\cf8 \strokec8 setPhase\cf2 \strokec2 (\cf12 \strokec12 '0'\cf2 \strokec2 , \cf11 \strokec11 4\cf2 \strokec2 )\cb1 \
+\cb4                     \cf7 \strokec7 reward1\cf2 \strokec2  \cf10 \strokec10 +=\cf2 \strokec2  \cf6 \strokec6 traci\cf2 \strokec2 .\cf7 \strokec7 edge\cf2 \strokec2 .\cf8 \strokec8 getLastStepVehicleNumber\cf2 \strokec2 (\cb1 \
+\cb4                         \cf12 \strokec12 '1si'\cf2 \strokec2 ) \cf10 \strokec10 +\cf2 \strokec2  \cf6 \strokec6 traci\cf2 \strokec2 .\cf7 \strokec7 edge\cf2 \strokec2 .\cf8 \strokec8 getLastStepVehicleNumber\cf2 \strokec2 (\cf12 \strokec12 '2si'\cf2 \strokec2 )\cb1 \
+\cb4                     \cf7 \strokec7 reward2\cf2 \strokec2  \cf10 \strokec10 +=\cf2 \strokec2  \cf6 \strokec6 traci\cf2 \strokec2 .\cf7 \strokec7 edge\cf2 \strokec2 .\cf8 \strokec8 getLastStepHaltingNumber\cf2 \strokec2 (\cb1 \
+\cb4                         \cf12 \strokec12 '3si'\cf2 \strokec2 ) \cf10 \strokec10 +\cf2 \strokec2  \cf6 \strokec6 traci\cf2 \strokec2 .\cf7 \strokec7 edge\cf2 \strokec2 .\cf8 \strokec8 getLastStepHaltingNumber\cf2 \strokec2 (\cf12 \strokec12 '4si'\cf2 \strokec2 )\cb1 \
+\cb4                     \cf7 \strokec7 waiting_time\cf2 \strokec2  \cf10 \strokec10 +=\cf2 \strokec2  (\cf6 \strokec6 traci\cf2 \strokec2 .\cf7 \strokec7 edge\cf2 \strokec2 .\cf8 \strokec8 getLastStepHaltingNumber\cf2 \strokec2 (\cf12 \strokec12 '1si'\cf2 \strokec2 ) \cf10 \strokec10 +\cf2 \strokec2  \cf6 \strokec6 traci\cf2 \strokec2 .\cf7 \strokec7 edge\cf2 \strokec2 .\cf8 \strokec8 getLastStepHaltingNumber\cf2 \strokec2 (\cb1 \
+\cb4                         \cf12 \strokec12 '2si'\cf2 \strokec2 ) \cf10 \strokec10 +\cf2 \strokec2  \cf6 \strokec6 traci\cf2 \strokec2 .\cf7 \strokec7 edge\cf2 \strokec2 .\cf8 \strokec8 getLastStepHaltingNumber\cf2 \strokec2 (\cf12 \strokec12 '3si'\cf2 \strokec2 ) \cf10 \strokec10 +\cf2 \strokec2  \cf6 \strokec6 traci\cf2 \strokec2 .\cf7 \strokec7 edge\cf2 \strokec2 .\cf8 \strokec8 getLastStepHaltingNumber\cf2 \strokec2 (\cf12 \strokec12 '4si'\cf2 \strokec2 ))\cb1 \
+\cb4                     \cf6 \strokec6 traci\cf2 \strokec2 .\cf8 \strokec8 simulationStep\cf2 \strokec2 ()\cb1 \
+\
+\
+\
+\
+\cb4             \cf5 \strokec5 if\cf2 \strokec2 (\cf7 \strokec7 action\cf2 \strokec2  \cf10 \strokec10 ==\cf2 \strokec2  \cf11 \strokec11 1\cf2 \strokec2  \cf9 \strokec9 and\cf2 \strokec2  \cf7 \strokec7 light\cf2 \strokec2 [\cf11 \strokec11 0\cf2 \strokec2 ][\cf11 \strokec11 0\cf2 \strokec2 ][\cf11 \strokec11 0\cf2 \strokec2 ] \cf10 \strokec10 ==\cf2 \strokec2  \cf11 \strokec11 0\cf2 \strokec2 ):\cb1 \
+\cb4                 \cf3 \strokec3 # Action Execution, no state change\cf2 \cb1 \strokec2 \
+\cb4                 \cf7 \strokec7 reward1\cf2 \strokec2  \cf10 \strokec10 =\cf2 \strokec2  \cf6 \strokec6 traci\cf2 \strokec2 .\cf7 \strokec7 edge\cf2 \strokec2 .\cf8 \strokec8 getLastStepVehicleNumber\cf2 \strokec2 (\cb1 \
+\cb4                     \cf12 \strokec12 '4si'\cf2 \strokec2 ) \cf10 \strokec10 +\cf2 \strokec2  \cf6 \strokec6 traci\cf2 \strokec2 .\cf7 \strokec7 edge\cf2 \strokec2 .\cf8 \strokec8 getLastStepVehicleNumber\cf2 \strokec2 (\cf12 \strokec12 '3si'\cf2 \strokec2 )\cb1 \
+\cb4                 \cf7 \strokec7 reward2\cf2 \strokec2  \cf10 \strokec10 =\cf2 \strokec2  \cf6 \strokec6 traci\cf2 \strokec2 .\cf7 \strokec7 edge\cf2 \strokec2 .\cf8 \strokec8 getLastStepHaltingNumber\cf2 \strokec2 (\cb1 \
+\cb4                     \cf12 \strokec12 '2si'\cf2 \strokec2 ) \cf10 \strokec10 +\cf2 \strokec2  \cf6 \strokec6 traci\cf2 \strokec2 .\cf7 \strokec7 edge\cf2 \strokec2 .\cf8 \strokec8 getLastStepHaltingNumber\cf2 \strokec2 (\cf12 \strokec12 '1si'\cf2 \strokec2 )\cb1 \
+\cb4                 \cf5 \strokec5 for\cf2 \strokec2  \cf7 \strokec7 i\cf2 \strokec2  \cf5 \strokec5 in\cf2 \strokec2  \cf6 \strokec6 range\cf2 \strokec2 (\cf11 \strokec11 10\cf2 \strokec2 ):\cb1 \
+\cb4                     \cf7 \strokec7 stepz\cf2 \strokec2  \cf10 \strokec10 +=\cf2 \strokec2  \cf11 \strokec11 1\cf2 \cb1 \strokec2 \
+\cb4                     \cf7 \strokec7 reward1\cf2 \strokec2  \cf10 \strokec10 +=\cf2 \strokec2  \cf6 \strokec6 traci\cf2 \strokec2 .\cf7 \strokec7 edge\cf2 \strokec2 .\cf8 \strokec8 getLastStepVehicleNumber\cf2 \strokec2 (\cb1 \
+\cb4                         \cf12 \strokec12 '4si'\cf2 \strokec2 ) \cf10 \strokec10 +\cf2 \strokec2  \cf6 \strokec6 traci\cf2 \strokec2 .\cf7 \strokec7 edge\cf2 \strokec2 .\cf8 \strokec8 getLastStepVehicleNumber\cf2 \strokec2 (\cf12 \strokec12 '3si'\cf2 \strokec2 )\cb1 \
+\cb4                     \cf7 \strokec7 reward2\cf2 \strokec2  \cf10 \strokec10 +=\cf2 \strokec2  \cf6 \strokec6 traci\cf2 \strokec2 .\cf7 \strokec7 edge\cf2 \strokec2 .\cf8 \strokec8 getLastStepHaltingNumber\cf2 \strokec2 (\cb1 \
+\cb4                         \cf12 \strokec12 '2si'\cf2 \strokec2 ) \cf10 \strokec10 +\cf2 \strokec2  \cf6 \strokec6 traci\cf2 \strokec2 .\cf7 \strokec7 edge\cf2 \strokec2 .\cf8 \strokec8 getLastStepHaltingNumber\cf2 \strokec2 (\cf12 \strokec12 '1si'\cf2 \strokec2 )\cb1 \
+\cb4                     \cf6 \strokec6 traci\cf2 \strokec2 .\cf7 \strokec7 trafficlight\cf2 \strokec2 .\cf8 \strokec8 setPhase\cf2 \strokec2 (\cf12 \strokec12 '0'\cf2 \strokec2 , \cf11 \strokec11 0\cf2 \strokec2 )\cb1 \
+\cb4                     \cf7 \strokec7 waiting_time\cf2 \strokec2  \cf10 \strokec10 +=\cf2 \strokec2  (\cf6 \strokec6 traci\cf2 \strokec2 .\cf7 \strokec7 edge\cf2 \strokec2 .\cf8 \strokec8 getLastStepHaltingNumber\cf2 \strokec2 (\cf12 \strokec12 '1si'\cf2 \strokec2 ) \cf10 \strokec10 +\cf2 \strokec2  \cf6 \strokec6 traci\cf2 \strokec2 .\cf7 \strokec7 edge\cf2 \strokec2 .\cf8 \strokec8 getLastStepHaltingNumber\cf2 \strokec2 (\cb1 \
+\cb4                         \cf12 \strokec12 '2si'\cf2 \strokec2 ) \cf10 \strokec10 +\cf2 \strokec2  \cf6 \strokec6 traci\cf2 \strokec2 .\cf7 \strokec7 edge\cf2 \strokec2 .\cf8 \strokec8 getLastStepHaltingNumber\cf2 \strokec2 (\cf12 \strokec12 '3si'\cf2 \strokec2 ) \cf10 \strokec10 +\cf2 \strokec2  \cf6 \strokec6 traci\cf2 \strokec2 .\cf7 \strokec7 edge\cf2 \strokec2 .\cf8 \strokec8 getLastStepHaltingNumber\cf2 \strokec2 (\cf12 \strokec12 '4si'\cf2 \strokec2 ))\cb1 \
+\cb4                     \cf6 \strokec6 traci\cf2 \strokec2 .\cf8 \strokec8 simulationStep\cf2 \strokec2 ()\cb1 \
+\
+\cb4             \cf5 \strokec5 if\cf2 \strokec2 (\cf7 \strokec7 action\cf2 \strokec2  \cf10 \strokec10 ==\cf2 \strokec2  \cf11 \strokec11 1\cf2 \strokec2  \cf9 \strokec9 and\cf2 \strokec2  \cf7 \strokec7 light\cf2 \strokec2 [\cf11 \strokec11 0\cf2 \strokec2 ][\cf11 \strokec11 0\cf2 \strokec2 ][\cf11 \strokec11 0\cf2 \strokec2 ] \cf10 \strokec10 ==\cf2 \strokec2  \cf11 \strokec11 1\cf2 \strokec2 ):\cb1 \
+\cb4                 \cf5 \strokec5 for\cf2 \strokec2  \cf7 \strokec7 i\cf2 \strokec2  \cf5 \strokec5 in\cf2 \strokec2  \cf6 \strokec6 range\cf2 \strokec2 (\cf11 \strokec11 6\cf2 \strokec2 ):\cb1 \
+\cb4                     \cf7 \strokec7 stepz\cf2 \strokec2  \cf10 \strokec10 +=\cf2 \strokec2  \cf11 \strokec11 1\cf2 \cb1 \strokec2 \
+\cb4                     \cf6 \strokec6 traci\cf2 \strokec2 .\cf7 \strokec7 trafficlight\cf2 \strokec2 .\cf8 \strokec8 setPhase\cf2 \strokec2 (\cf12 \strokec12 '0'\cf2 \strokec2 , \cf11 \strokec11 5\cf2 \strokec2 )\cb1 \
+\cb4                     \cf7 \strokec7 waiting_time\cf2 \strokec2  \cf10 \strokec10 +=\cf2 \strokec2  (\cf6 \strokec6 traci\cf2 \strokec2 .\cf7 \strokec7 edge\cf2 \strokec2 .\cf8 \strokec8 getLastStepHaltingNumber\cf2 \strokec2 (\cf12 \strokec12 '1si'\cf2 \strokec2 ) \cf10 \strokec10 +\cf2 \strokec2  \cf6 \strokec6 traci\cf2 \strokec2 .\cf7 \strokec7 edge\cf2 \strokec2 .\cf8 \strokec8 getLastStepHaltingNumber\cf2 \strokec2 (\cb1 \
+\cb4                         \cf12 \strokec12 '2si'\cf2 \strokec2 ) \cf10 \strokec10 +\cf2 \strokec2  \cf6 \strokec6 traci\cf2 \strokec2 .\cf7 \strokec7 edge\cf2 \strokec2 .\cf8 \strokec8 getLastStepHaltingNumber\cf2 \strokec2 (\cf12 \strokec12 '3si'\cf2 \strokec2 ) \cf10 \strokec10 +\cf2 \strokec2  \cf6 \strokec6 traci\cf2 \strokec2 .\cf7 \strokec7 edge\cf2 \strokec2 .\cf8 \strokec8 getLastStepHaltingNumber\cf2 \strokec2 (\cf12 \strokec12 '4si'\cf2 \strokec2 ))\cb1 \
+\cb4                     \cf6 \strokec6 traci\cf2 \strokec2 .\cf8 \strokec8 simulationStep\cf2 \strokec2 ()\cb1 \
+\cb4                 \cf5 \strokec5 for\cf2 \strokec2  \cf7 \strokec7 i\cf2 \strokec2  \cf5 \strokec5 in\cf2 \strokec2  \cf6 \strokec6 range\cf2 \strokec2 (\cf11 \strokec11 10\cf2 \strokec2 ):\cb1 \
+\cb4                     \cf7 \strokec7 stepz\cf2 \strokec2  \cf10 \strokec10 +=\cf2 \strokec2  \cf11 \strokec11 1\cf2 \cb1 \strokec2 \
+\cb4                     \cf6 \strokec6 traci\cf2 \strokec2 .\cf7 \strokec7 trafficlight\cf2 \strokec2 .\cf8 \strokec8 setPhase\cf2 \strokec2 (\cf12 \strokec12 '0'\cf2 \strokec2 , \cf11 \strokec11 6\cf2 \strokec2 )\cb1 \
+\cb4                     \cf7 \strokec7 waiting_time\cf2 \strokec2  \cf10 \strokec10 +=\cf2 \strokec2  (\cf6 \strokec6 traci\cf2 \strokec2 .\cf7 \strokec7 edge\cf2 \strokec2 .\cf8 \strokec8 getLastStepHaltingNumber\cf2 \strokec2 (\cf12 \strokec12 '1si'\cf2 \strokec2 ) \cf10 \strokec10 +\cf2 \strokec2  \cf6 \strokec6 traci\cf2 \strokec2 .\cf7 \strokec7 edge\cf2 \strokec2 .\cf8 \strokec8 getLastStepHaltingNumber\cf2 \strokec2 (\cb1 \
+\cb4                         \cf12 \strokec12 '2si'\cf2 \strokec2 ) \cf10 \strokec10 +\cf2 \strokec2  \cf6 \strokec6 traci\cf2 \strokec2 .\cf7 \strokec7 edge\cf2 \strokec2 .\cf8 \strokec8 getLastStepHaltingNumber\cf2 \strokec2 (\cf12 \strokec12 '3si'\cf2 \strokec2 ) \cf10 \strokec10 +\cf2 \strokec2  \cf6 \strokec6 traci\cf2 \strokec2 .\cf7 \strokec7 edge\cf2 \strokec2 .\cf8 \strokec8 getLastStepHaltingNumber\cf2 \strokec2 (\cf12 \strokec12 '4si'\cf2 \strokec2 ))\cb1 \
+\cb4                     \cf6 \strokec6 traci\cf2 \strokec2 .\cf8 \strokec8 simulationStep\cf2 \strokec2 ()\cb1 \
+\cb4                 \cf5 \strokec5 for\cf2 \strokec2  \cf7 \strokec7 i\cf2 \strokec2  \cf5 \strokec5 in\cf2 \strokec2  \cf6 \strokec6 range\cf2 \strokec2 (\cf11 \strokec11 6\cf2 \strokec2 ):\cb1 \
+\cb4                     \cf7 \strokec7 stepz\cf2 \strokec2  \cf10 \strokec10 +=\cf2 \strokec2  \cf11 \strokec11 1\cf2 \cb1 \strokec2 \
+\cb4                     \cf6 \strokec6 traci\cf2 \strokec2 .\cf7 \strokec7 trafficlight\cf2 \strokec2 .\cf8 \strokec8 setPhase\cf2 \strokec2 (\cf12 \strokec12 '0'\cf2 \strokec2 , \cf11 \strokec11 7\cf2 \strokec2 )\cb1 \
+\cb4                     \cf7 \strokec7 waiting_time\cf2 \strokec2  \cf10 \strokec10 +=\cf2 \strokec2  (\cf6 \strokec6 traci\cf2 \strokec2 .\cf7 \strokec7 edge\cf2 \strokec2 .\cf8 \strokec8 getLastStepHaltingNumber\cf2 \strokec2 (\cf12 \strokec12 '1si'\cf2 \strokec2 ) \cf10 \strokec10 +\cf2 \strokec2  \cf6 \strokec6 traci\cf2 \strokec2 .\cf7 \strokec7 edge\cf2 \strokec2 .\cf8 \strokec8 getLastStepHaltingNumber\cf2 \strokec2 (\cb1 \
+\cb4                         \cf12 \strokec12 '2si'\cf2 \strokec2 ) \cf10 \strokec10 +\cf2 \strokec2  \cf6 \strokec6 traci\cf2 \strokec2 .\cf7 \strokec7 edge\cf2 \strokec2 .\cf8 \strokec8 getLastStepHaltingNumber\cf2 \strokec2 (\cf12 \strokec12 '3si'\cf2 \strokec2 ) \cf10 \strokec10 +\cf2 \strokec2  \cf6 \strokec6 traci\cf2 \strokec2 .\cf7 \strokec7 edge\cf2 \strokec2 .\cf8 \strokec8 getLastStepHaltingNumber\cf2 \strokec2 (\cf12 \strokec12 '4si'\cf2 \strokec2 ))\cb1 \
+\cb4                     \cf6 \strokec6 traci\cf2 \strokec2 .\cf8 \strokec8 simulationStep\cf2 \strokec2 ()\cb1 \
+\
+\
+\
+\
+\cb4                 \cf7 \strokec7 reward1\cf2 \strokec2  \cf10 \strokec10 =\cf2 \strokec2  \cf6 \strokec6 traci\cf2 \strokec2 .\cf7 \strokec7 edge\cf2 \strokec2 .\cf8 \strokec8 getLastStepVehicleNumber\cf2 \strokec2 (\cb1 \
+\cb4                     \cf12 \strokec12 '4si'\cf2 \strokec2 ) \cf10 \strokec10 +\cf2 \strokec2  \cf6 \strokec6 traci\cf2 \strokec2 .\cf7 \strokec7 edge\cf2 \strokec2 .\cf8 \strokec8 getLastStepVehicleNumber\cf2 \strokec2 (\cf12 \strokec12 '3si'\cf2 \strokec2 )\cb1 \
+\cb4                 \cf7 \strokec7 reward2\cf2 \strokec2  \cf10 \strokec10 =\cf2 \strokec2  \cf6 \strokec6 traci\cf2 \strokec2 .\cf7 \strokec7 edge\cf2 \strokec2 .\cf8 \strokec8 getLastStepHaltingNumber\cf2 \strokec2 (\cb1 \
+\cb4                     \cf12 \strokec12 '2si'\cf2 \strokec2 ) \cf10 \strokec10 +\cf2 \strokec2  \cf6 \strokec6 traci\cf2 \strokec2 .\cf7 \strokec7 edge\cf2 \strokec2 .\cf8 \strokec8 getLastStepHaltingNumber\cf2 \strokec2 (\cf12 \strokec12 '1si'\cf2 \strokec2 )\cb1 \
+\cb4                 \cf5 \strokec5 for\cf2 \strokec2  \cf7 \strokec7 i\cf2 \strokec2  \cf5 \strokec5 in\cf2 \strokec2  \cf6 \strokec6 range\cf2 \strokec2 (\cf11 \strokec11 10\cf2 \strokec2 ):\cb1 \
+\cb4                     \cf7 \strokec7 stepz\cf2 \strokec2  \cf10 \strokec10 +=\cf2 \strokec2  \cf11 \strokec11 1\cf2 \cb1 \strokec2 \
+\cb4                     \cf6 \strokec6 traci\cf2 \strokec2 .\cf7 \strokec7 trafficlight\cf2 \strokec2 .\cf8 \strokec8 setPhase\cf2 \strokec2 (\cf12 \strokec12 '0'\cf2 \strokec2 , \cf11 \strokec11 0\cf2 \strokec2 )\cb1 \
+\cb4                     \cf7 \strokec7 reward1\cf2 \strokec2  \cf10 \strokec10 +=\cf2 \strokec2  \cf6 \strokec6 traci\cf2 \strokec2 .\cf7 \strokec7 edge\cf2 \strokec2 .\cf8 \strokec8 getLastStepVehicleNumber\cf2 \strokec2 (\cb1 \
+\cb4                         \cf12 \strokec12 '4si'\cf2 \strokec2 ) \cf10 \strokec10 +\cf2 \strokec2  \cf6 \strokec6 traci\cf2 \strokec2 .\cf7 \strokec7 edge\cf2 \strokec2 .\cf8 \strokec8 getLastStepVehicleNumber\cf2 \strokec2 (\cf12 \strokec12 '3si'\cf2 \strokec2 )\cb1 \
+\cb4                     \cf7 \strokec7 reward2\cf2 \strokec2  \cf10 \strokec10 +=\cf2 \strokec2  \cf6 \strokec6 traci\cf2 \strokec2 .\cf7 \strokec7 edge\cf2 \strokec2 .\cf8 \strokec8 getLastStepHaltingNumber\cf2 \strokec2 (\cb1 \
+\cb4                         \cf12 \strokec12 '2si'\cf2 \strokec2 ) \cf10 \strokec10 +\cf2 \strokec2  \cf6 \strokec6 traci\cf2 \strokec2 .\cf7 \strokec7 edge\cf2 \strokec2 .\cf8 \strokec8 getLastStepHaltingNumber\cf2 \strokec2 (\cf12 \strokec12 '1si'\cf2 \strokec2 )\cb1 \
+\cb4                     \cf7 \strokec7 waiting_time\cf2 \strokec2  \cf10 \strokec10 +=\cf2 \strokec2  (\cf6 \strokec6 traci\cf2 \strokec2 .\cf7 \strokec7 edge\cf2 \strokec2 .\cf8 \strokec8 getLastStepHaltingNumber\cf2 \strokec2 (\cf12 \strokec12 '1si'\cf2 \strokec2 ) \cf10 \strokec10 +\cf2 \strokec2  \cf6 \strokec6 traci\cf2 \strokec2 .\cf7 \strokec7 edge\cf2 \strokec2 .\cf8 \strokec8 getLastStepHaltingNumber\cf2 \strokec2 (\cb1 \
+\cb4                         \cf12 \strokec12 '2si'\cf2 \strokec2 ) \cf10 \strokec10 +\cf2 \strokec2  \cf6 \strokec6 traci\cf2 \strokec2 .\cf7 \strokec7 edge\cf2 \strokec2 .\cf8 \strokec8 getLastStepHaltingNumber\cf2 \strokec2 (\cf12 \strokec12 '3si'\cf2 \strokec2 ) \cf10 \strokec10 +\cf2 \strokec2  \cf6 \strokec6 traci\cf2 \strokec2 .\cf7 \strokec7 edge\cf2 \strokec2 .\cf8 \strokec8 getLastStepHaltingNumber\cf2 \strokec2 (\cf12 \strokec12 '4si'\cf2 \strokec2 ))\cb1 \
+\cb4                     \cf6 \strokec6 traci\cf2 \strokec2 .\cf8 \strokec8 simulationStep\cf2 \strokec2 ()\cb1 \
+\
+\
+\
+\
+\cb4             \cf7 \strokec7 new_state\cf2 \strokec2  \cf10 \strokec10 =\cf2 \strokec2  \cf7 \strokec7 sumoInt\cf2 \strokec2 .\cf8 \strokec8 getState\cf2 \strokec2 ()\cb1 \
+\cb4             \cf7 \strokec7 reward\cf2 \strokec2  \cf10 \strokec10 =\cf2 \strokec2  \cf7 \strokec7 reward1\cf2 \strokec2  \cf10 \strokec10 -\cf2 \strokec2  \cf7 \strokec7 reward2\cf2 \cb1 \strokec2 \
+\cb4             \cf7 \strokec7 agent\cf2 \strokec2 .\cf8 \strokec8 remember\cf2 \strokec2 (\cf7 \strokec7 state\cf2 \strokec2 , \cf7 \strokec7 action\cf2 \strokec2 , \cf7 \strokec7 reward\cf2 \strokec2 , \cf7 \strokec7 new_state\cf2 \strokec2 , \cf9 \strokec9 False\cf2 \strokec2 )\cb1 \
+\cb4             \cf3 \strokec3 # Randomly Draw 32 samples and train the neural network by RMS Prop algorithm\cf2 \cb1 \strokec2 \
+\cb4             \cf5 \strokec5 if\cf2 \strokec2 (\cf8 \strokec8 len\cf2 \strokec2 (\cf7 \strokec7 agent\cf2 \strokec2 .\cf7 \strokec7 memory\cf2 \strokec2 ) \cf10 \strokec10 >\cf2 \strokec2  \cf7 \strokec7 batch_size\cf2 \strokec2 ):\cb1 \
+\cb4                 \cf7 \strokec7 agent\cf2 \strokec2 .\cf8 \strokec8 replay\cf2 \strokec2 (\cf7 \strokec7 batch_size\cf2 \strokec2 )\cb1 \
+\
+\cb4         \cf7 \strokec7 mem\cf2 \strokec2  \cf10 \strokec10 =\cf2 \strokec2  \cf7 \strokec7 agent\cf2 \strokec2 .\cf7 \strokec7 memory\cf2 \strokec2 [\cf10 \strokec10 -\cf11 \strokec11 1\cf2 \strokec2 ]\cb1 \
+\cb4         \cf5 \strokec5 del\cf2 \strokec2  \cf7 \strokec7 agent\cf2 \strokec2 .\cf7 \strokec7 memory\cf2 \strokec2 [\cf10 \strokec10 -\cf11 \strokec11 1\cf2 \strokec2 ]\cb1 \
+\cb4         \cf7 \strokec7 agent\cf2 \strokec2 .\cf7 \strokec7 memory\cf2 \strokec2 .\cf8 \strokec8 append\cf2 \strokec2 ((\cf7 \strokec7 mem\cf2 \strokec2 [\cf11 \strokec11 0\cf2 \strokec2 ], \cf7 \strokec7 mem\cf2 \strokec2 [\cf11 \strokec11 1\cf2 \strokec2 ], \cf7 \strokec7 reward\cf2 \strokec2 , \cf7 \strokec7 mem\cf2 \strokec2 [\cf11 \strokec11 3\cf2 \strokec2 ], \cf9 \strokec9 True\cf2 \strokec2 ))\cb1 \
+\cb4         \cf7 \strokec7 log\cf2 \strokec2 .\cf8 \strokec8 write\cf2 \strokec2 (\cf9 \strokec9 f\cf12 \strokec12 'episode - \cf9 \strokec9 \{\cf7 \strokec7 e\cf9 \strokec9 \}\cf12 \strokec12 , total waiting time - \cf9 \strokec9 \{\cf7 \strokec7 waiting_time\cf9 \strokec9 \}\cf12 \strokec12 , static waiting time - 338798, total reward: \cf9 \strokec9 \{\cf7 \strokec7 total_reward\cf9 \strokec9 \}\cf14 \strokec14 \\n\cf12 \strokec12 '\cf2 \strokec2 )\cb1 \
+\cb4         \cf7 \strokec7 log\cf2 \strokec2 .\cf8 \strokec8 close\cf2 \strokec2 ()\cb1 \
+\cb4         \cf8 \strokec8 print\cf2 \strokec2 (\cf12 \strokec12 'episode - '\cf2 \strokec2  \cf10 \strokec10 +\cf2 \strokec2  \cf6 \strokec6 str\cf2 \strokec2 (\cf7 \strokec7 e\cf2 \strokec2 ) \cf10 \strokec10 +\cf2 \strokec2  \cf12 \strokec12 ' total waiting time - '\cf2 \strokec2  \cf10 \strokec10 +\cf2 \strokec2  \cf6 \strokec6 str\cf2 \strokec2 (\cf7 \strokec7 waiting_time\cf2 \strokec2 )\cf10 \strokec10 +\cf12 \strokec12 " total_reward:"\cf10 \strokec10 +\cf6 \strokec6 str\cf2 \strokec2 (\cf7 \strokec7 total_reward\cf2 \strokec2 ))\cb1 \
+\cb4         \cf7 \strokec7 agent\cf2 \strokec2 .\cf8 \strokec8 save\cf2 \strokec2 (\cf12 \strokec12 'reinf_traf_control_'\cf2 \strokec2  \cf10 \strokec10 +\cf2 \strokec2  \cf6 \strokec6 str\cf2 \strokec2 (\cf7 \strokec7 e\cf2 \strokec2 ) \cf10 \strokec10 +\cf2 \strokec2  \cf12 \strokec12 '.h5'\cf2 \strokec2 )\cb1 \
+\cb4         \cf6 \strokec6 traci\cf2 \strokec2 .\cf8 \strokec8 close\cf2 \strokec2 (\cf7 \strokec7 wait\cf10 \strokec10 =\cf9 \strokec9 False\cf2 \strokec2 )\cb1 \
+\
+\pard\pardeftab720\partightenfactor0
+\cf6 \cb4 \strokec6 sys\cf2 \strokec2 .\cf7 \strokec7 stdout\cf2 \strokec2 .\cf8 \strokec8 flush\cf2 \strokec2 ()\cb1 \
+\
+}
